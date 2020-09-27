@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>TaleLearnCode.SpeakingEngagementManager.Entities</AssemblyName>
+    <RootNamespace>TaleLearnCode.SpeakingEngagementManager.Entities</RootNamespace>
+  </PropertyGroup>
+
+</Project>
