@@ -9,7 +9,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework.Cos
 	/// </summary>
 	/// <seealso cref="EntityFramework.Tag" />
 	/// <seealso cref="IPartitionKey" />
-	public class Tag : EntityFramework.Tag, IPartitionKey
+	public class Tag : Data.EntityFramework.Tag, IPartitionKey
 	{
 
 		/// <summary>

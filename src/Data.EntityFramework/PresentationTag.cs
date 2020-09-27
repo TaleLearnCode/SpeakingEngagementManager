@@ -1,12 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
+namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 {
 
 	/// <summary>
-	/// Represents the many-to-many relationship between presentations and shindigs.
+	/// Represents the many-to-many relationship between presentations and tags.
 	/// </summary>
-	public class PresentationShindig : IPresentationShindig
+	public class PresentationTag : IPresentationTag
 	{
 
 		/// <summary>
@@ -28,22 +28,22 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		public Presentation Presentation { get; set; }
 
 		/// <summary>
-		/// Gets or sets the identifier of the associated <see cref="Shindig"/>.
+		/// Gets or sets the identifier of the associated <see cref="Tag"/>.
 		/// </summary>
 		/// <value>
-		/// A <c>string</c> representing the associated shindig identifier.
+		/// A <c>string</c> representing the associated tag identifier.
 		/// </value>
-		[JsonPropertyName("shindigId")]
-		public string ShindigId { get; set; }
+		[JsonPropertyName("tagId")]
+		public string TagId { get; set; }
 
 		/// <summary>
-		/// Gets or sets the associated <see cref="Shindig"/>.
+		/// Gets or sets the associated <see cref="Tag"/>.
 		/// </summary>
 		/// <value>
-		/// A <see cref="Shindig"/> representing the associated tag.
+		/// A <see cref="Tag"/> representing the associated tag.
 		/// </value>
-		[JsonPropertyName("shindig")]
-		public Shindig Shindig { get; set; }
+		[JsonPropertyName("tag")]
+		public Tag Tag { get; set; }
 
 	}
 

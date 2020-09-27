@@ -9,7 +9,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework.Cos
 	/// </summary>
 	/// <seealso cref="EntityFramework.Shindig" />
 	/// <seealso cref="IPartitionKey" />
-	public class Shindig : EntityFramework.Shindig, IPartitionKey
+	public class Shindig : Data.EntityFramework.Shindig, IPartitionKey
 	{
 
 		/// <summary>

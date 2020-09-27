@@ -1,4 +1,4 @@
-﻿namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
+﻿namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 {
 
 	/// <summary>

@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework</AssemblyName>
-    <RootNamespace>TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework</RootNamespace>
+    <AssemblyName>TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework</AssemblyName>
+    <RootNamespace>TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
