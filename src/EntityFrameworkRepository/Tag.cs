@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using TaleLearnCode.SpeakingEngagementManager.Entities;
-
+using TaleLearnCode.SpeakingEngagementManager.Domain;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 {
@@ -19,7 +18,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <c>string</c> representing the tag identifier.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Tag.Id)]
+		[JsonPropertyName(Domain.PropertyNames.Tag.Id)]
 		public string Id { get; init; }
 
 		/// <summary>
@@ -28,7 +27,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <c>string</c> representing the tag's name.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Tag.Name)]
+		[JsonPropertyName(Domain.PropertyNames.Tag.Name)]
 		public string Name { get; set; }
 
 		/// <summary>

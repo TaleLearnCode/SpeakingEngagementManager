@@ -1,4 +1,4 @@
-﻿namespace TaleLearnCode.SpeakingEngagementManager.Entities.PropertyNames
+﻿namespace TaleLearnCode.SpeakingEngagementManager.Domain.PropertyNames
 {
 
 	/// <summary>

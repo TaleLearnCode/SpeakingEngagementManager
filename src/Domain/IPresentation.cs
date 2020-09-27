@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TaleLearnCode.SpeakingEngagementManager.Entities
+namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
 
 	/// <summary>
