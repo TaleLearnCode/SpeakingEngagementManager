@@ -1,15 +1,15 @@
 ﻿using System.Text.Json.Serialization;
 using TaleLearnCode.SpeakingEngagementManager.Domain;
 
-namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework.Cosmos
+namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 {
 
 	/// <summary>
-	/// Represents a presentation presented by a speaker.
+	/// Represents the many-to-many relationship between presentations and tags.
 	/// </summary>
-	/// <seealso cref="EntityFramework.Presentation" />
+	/// <seealso cref="EntityFramework.PresentationTag" />
 	/// <seealso cref="IPartitionKey" />
-	public class Presentation : Data.EntityFramework.Presentation, IPartitionKey
+	public class PresentationTag : Data.EntityFramework.PresentationTag, IPartitionKey
 	{
 
 		/// <summary>

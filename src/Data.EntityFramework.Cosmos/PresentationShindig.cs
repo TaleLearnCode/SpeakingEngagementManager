@@ -1,15 +1,15 @@
 ﻿using System.Text.Json.Serialization;
 using TaleLearnCode.SpeakingEngagementManager.Domain;
 
-namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework.Cosmos
+namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 {
 
 	/// <summary>
-	/// Represents a type of session (i.e. 60-minute presentation, 4-hour workshop, etc.).
+	/// Represents the many-to-many relationship between presentations and shindigs.
 	/// </summary>
-	/// <seealso cref="EntityFramework.SessionType" />
+	/// <seealso cref="EntityFramework.PresentationShindig" />
 	/// <seealso cref="IPartitionKey" />
-	public class SessionType : Data.EntityFramework.SessionType, IPartitionKey
+	public class PresentationShindig : Data.EntityFramework.PresentationShindig, IPartitionKey
 	{
 
 		/// <summary>
