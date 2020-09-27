@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using TaleLearnCode.SpeakingEngagementManager.Entities;
+using TaleLearnCode.SpeakingEngagementManager.Domain;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 {
@@ -19,7 +19,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <c>string</c> representing the shindig identifier.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Shindig.Id)]
+		[JsonPropertyName(Domain.PropertyNames.Shindig.Id)]
 		public string Id { get; init; }
 
 		/// <summary>
@@ -28,7 +28,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <see cref="string"/> representing the shindig's name.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Shindig.Name)]
+		[JsonPropertyName(Domain.PropertyNames.Shindig.Name)]
 		public string Name { get; set; }
 
 		/// <summary>
@@ -37,7 +37,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// a <c>DateTime</c> representing the start date and time of the shindig.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Shindig.StartDateTime)]
+		[JsonPropertyName(Domain.PropertyNames.Shindig.StartDateTime)]
 		public DateTime StartDateTime { get; set; }
 
 		/// <summary>
@@ -46,7 +46,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// a <c>DateTime</c> representing the end date and time of the shindig.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Shindig.EndDateTime)]
+		[JsonPropertyName(Domain.PropertyNames.Shindig.EndDateTime)]
 		public DateTime EndDateTime { get; set; }
 
 		/// <summary>
@@ -55,7 +55,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <c>string</c> representing the shindig location.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Shindig.Location)]
+		[JsonPropertyName(Domain.PropertyNames.Shindig.Location)]
 		public string Location { get; set; }
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		///   <c>true</c> if the shindig is a virtual event; otherwise, <c>false</c>.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Shindig.IsVirtual)]
+		[JsonPropertyName(Domain.PropertyNames.Shindig.IsVirtual)]
 		public bool IsVirtual { get; set; }
 
 		/// <summary>

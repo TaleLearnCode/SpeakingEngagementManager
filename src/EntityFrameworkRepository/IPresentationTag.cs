@@ -1,4 +1,4 @@
-﻿using TaleLearnCode.SpeakingEngagementManager.Entities;
+﻿using TaleLearnCode.SpeakingEngagementManager.Domain;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using TaleLearnCode.SpeakingEngagementManager.Entities;
+using TaleLearnCode.SpeakingEngagementManager.Domain;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 {
@@ -19,7 +19,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <c>string</c> representing the presentation identifier.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Presentation.Id)]
+		[JsonPropertyName(Domain.PropertyNames.Presentation.Id)]
 		public string Id { get; init; } = Guid.NewGuid().ToString();
 
 		/// <summary>
@@ -28,7 +28,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <c>string</c> representing the presentation name.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Presentation.Name)]
+		[JsonPropertyName(Domain.PropertyNames.Presentation.Name)]
 		public string Name { get; set; }
 
 		/// <summary>
@@ -37,7 +37,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <c>string</c> representing the presentation's abstract.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Presentation.Abstract)]
+		[JsonPropertyName(Domain.PropertyNames.Presentation.Abstract)]
 		public string Abstract { get; set; }
 
 		/// <summary>
@@ -46,7 +46,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <c>string</c> representing the short version of the presentation abstract.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Presentation.ShortAbstract)]
+		[JsonPropertyName(Domain.PropertyNames.Presentation.ShortAbstract)]
 		public string ShortAbstract { get; set; }
 
 		/// <summary>
@@ -55,7 +55,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <c>string</c> representing the 100-character limited version of the presentation's abstract.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Presentation.HundredCharacterAbstract)]
+		[JsonPropertyName(Domain.PropertyNames.Presentation.HundredCharacterAbstract)]
 		public string HundredCharacterAbstract { get; set; }
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <see cref="List{string}"/> representing the presentation learning objectives.
 		/// </value>
-		[JsonPropertyName(Entities.PropertyNames.Presentation.LearningObjectives)]
+		[JsonPropertyName(Domain.PropertyNames.Presentation.LearningObjectives)]
 		public List<string> LearningObjectives { get; set; } = new List<string>();
 
 		/// <summary>
