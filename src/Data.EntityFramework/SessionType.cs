@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using TaleLearnCode.SpeakingEngagementManager.Domain;
 
-namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
+namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 {
 
 	/// <summary>

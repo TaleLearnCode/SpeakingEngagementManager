@@ -9,7 +9,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework.Cos
 	/// </summary>
 	/// <seealso cref="EntityFramework.PresentationSessionType" />
 	/// <seealso cref="IPartitionKey" />
-	public class PresentationSessionType : EntityFramework.PresentationSessionType, IPartitionKey
+	public class PresentationSessionType : Data.EntityFramework.PresentationSessionType, IPartitionKey
 	{
 
 		/// <summary>

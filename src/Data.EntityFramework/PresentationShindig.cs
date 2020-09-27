@@ -1,12 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
+namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 {
 
 	/// <summary>
-	/// Represents the many-to-many relationship between presentations and session types.
+	/// Represents the many-to-many relationship between presentations and shindigs.
 	/// </summary>
-	public class PresentationSessionType : IPresentationSessionType
+	public class PresentationShindig : IPresentationShindig
 	{
 
 		/// <summary>
@@ -28,22 +28,22 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		public Presentation Presentation { get; set; }
 
 		/// <summary>
-		/// Gets or sets the identifier of the associated <see cref="SessionType"/>.
+		/// Gets or sets the identifier of the associated <see cref="Shindig"/>.
 		/// </summary>
 		/// <value>
-		/// A <c>string</c> representing the associated SessionType identifier.
+		/// A <c>string</c> representing the associated shindig identifier.
 		/// </value>
-		[JsonPropertyName("sessionTypeId")]
-		public string SessionTypeId { get; set; }
+		[JsonPropertyName("shindigId")]
+		public string ShindigId { get; set; }
 
 		/// <summary>
-		/// Gets or sets the associated <see cref="SessionType"/>.
+		/// Gets or sets the associated <see cref="Shindig"/>.
 		/// </summary>
 		/// <value>
-		/// A <see cref="SessionType"/> representing the associated session type.
+		/// A <see cref="Shindig"/> representing the associated tag.
 		/// </value>
-		[JsonPropertyName("sessionType")]
-		public SessionType SessionType { get; set; }
+		[JsonPropertyName("shindig")]
+		public Shindig Shindig { get; set; }
 
 	}
 

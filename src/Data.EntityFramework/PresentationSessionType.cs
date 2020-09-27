@@ -1,12 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
+namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 {
 
 	/// <summary>
-	/// Represents the many-to-many relationship between presentations and tags.
+	/// Represents the many-to-many relationship between presentations and session types.
 	/// </summary>
-	public class PresentationTag : IPresentationTag
+	public class PresentationSessionType : IPresentationSessionType
 	{
 
 		/// <summary>
@@ -28,22 +28,22 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		public Presentation Presentation { get; set; }
 
 		/// <summary>
-		/// Gets or sets the identifier of the associated <see cref="Tag"/>.
+		/// Gets or sets the identifier of the associated <see cref="SessionType"/>.
 		/// </summary>
 		/// <value>
-		/// A <c>string</c> representing the associated tag identifier.
+		/// A <c>string</c> representing the associated SessionType identifier.
 		/// </value>
-		[JsonPropertyName("tagId")]
-		public string TagId { get; set; }
+		[JsonPropertyName("sessionTypeId")]
+		public string SessionTypeId { get; set; }
 
 		/// <summary>
-		/// Gets or sets the associated <see cref="Tag"/>.
+		/// Gets or sets the associated <see cref="SessionType"/>.
 		/// </summary>
 		/// <value>
-		/// A <see cref="Tag"/> representing the associated tag.
+		/// A <see cref="SessionType"/> representing the associated session type.
 		/// </value>
-		[JsonPropertyName("tag")]
-		public Tag Tag { get; set; }
+		[JsonPropertyName("sessionType")]
+		public SessionType SessionType { get; set; }
 
 	}
 
