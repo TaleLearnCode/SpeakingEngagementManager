@@ -1,4 +1,6 @@
-﻿namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
+﻿using System.Text.Json.Serialization;
+
+namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 {
 
 	/// <summary>
@@ -13,6 +15,7 @@
 		/// <value>
 		/// A <c>string</c> representing the associated Presentation identifier.
 		/// </value>
+		[JsonPropertyName("presentationId")]
 		public string PresentationId { get; set; }
 
 		/// <summary>
@@ -21,6 +24,7 @@
 		/// <value>
 		/// A <see cref="Presentation"/> representing the associated presentation.
 		/// </value>
+		[JsonPropertyName("presentation")]
 		public Presentation Presentation { get; set; }
 
 		/// <summary>
@@ -29,6 +33,7 @@
 		/// <value>
 		/// A <c>string</c> representing the associated SessionType identifier.
 		/// </value>
+		[JsonPropertyName("sessionTypeId")]
 		public string SessionTypeId { get; set; }
 
 		/// <summary>
@@ -37,6 +42,7 @@
 		/// <value>
 		/// A <see cref="SessionType"/> representing the associated session type.
 		/// </value>
+		[JsonPropertyName("sessionType")]
 		public SessionType SessionType { get; set; }
 
 	}

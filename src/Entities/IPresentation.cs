@@ -42,12 +42,12 @@ namespace TaleLearnCode.SpeakingEngagementManager.Entities
 		string ShortAbstract { get; set; }
 
 		/// <summary>
-		/// Gets or sets a one-sentence version of the presentation's abstract.
+		/// Gets or sets a version of the presentation's abstract that is 100 characters or less.
 		/// </summary>
 		/// <value>
-		/// A <c>string</c> representing the one-sentence version of the presentation's abstract.
+		/// A <c>string</c> representing the 100-character limited version of the presentation's abstract.
 		/// </value>
-		string OneSentenceAbstract { get; set; }
+		string HundredCharacterAbstract { get; set; }
 
 		/// <summary>
 		/// Gets or sets the learning objectives for the presentation.
