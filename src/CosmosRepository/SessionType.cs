@@ -1,6 +1,7 @@
-﻿using TaleLearnCode.SpeakingEngagementManager.Entities;
+﻿using System.Text.Json.Serialization;
+using TaleLearnCode.SpeakingEngagementManager.Entities;
 
-namespace CosmosRepository
+namespace TaleLearnCode.SpeakingEngagementManager.Repository.CosmosSDK
 {
 
 	/// <summary>
@@ -17,6 +18,7 @@ namespace CosmosRepository
 		/// <value>
 		/// A <c>string</c> representing the session type identifier.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.SessionType.Id)]
 		public string Id { get; init; }
 
 		/// <summary>
@@ -25,8 +27,8 @@ namespace CosmosRepository
 		/// <value>
 		/// A <c>string</c> representing the data owner's email address.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.PartitionKey.CosmosPartitionKey)]
 		public string OwnerEmailAddress { get; set; }
-
 
 		/// <summary>
 		/// Gets or sets the name of the session type.
@@ -34,6 +36,7 @@ namespace CosmosRepository
 		/// <value>
 		/// A <c>string</c> representing the session type name.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.SessionType.Name)]
 		public string Name { get; set; }
 
 		/// <summary>
@@ -42,6 +45,7 @@ namespace CosmosRepository
 		/// <value>
 		/// A <c>int</c> representing the duration of a session of this type in minutes.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.SessionType.Duration)]
 		public int Duration { get; set; }
 
 	}

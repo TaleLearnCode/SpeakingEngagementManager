@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using TaleLearnCode.SpeakingEngagementManager.Entities;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
@@ -18,6 +19,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <c>string</c> representing the shindig identifier.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.Shindig.Id)]
 		public string Id { get; init; }
 
 		/// <summary>
@@ -26,6 +28,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <see cref="string"/> representing the shindig's name.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.Shindig.Name)]
 		public string Name { get; set; }
 
 		/// <summary>
@@ -34,6 +37,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// a <c>DateTime</c> representing the start date and time of the shindig.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.Shindig.StartDateTime)]
 		public DateTime StartDateTime { get; set; }
 
 		/// <summary>
@@ -42,6 +46,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// a <c>DateTime</c> representing the end date and time of the shindig.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.Shindig.EndDateTime)]
 		public DateTime EndDateTime { get; set; }
 
 		/// <summary>
@@ -50,6 +55,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <c>string</c> representing the shindig location.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.Shindig.Location)]
 		public string Location { get; set; }
 
 		/// <summary>
@@ -58,6 +64,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		///   <c>true</c> if the shindig is a virtual event; otherwise, <c>false</c>.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.Shindig.IsVirtual)]
 		public bool IsVirtual { get; set; }
 
 		/// <summary>
@@ -66,6 +73,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework
 		/// <value>
 		/// A <see cref="List{PresentationShindig}"/> representing the list of associated presentations.
 		/// </value>
+		[JsonPropertyName("presentationShindigs")]
 		public List<PresentationShindig> PresentationShindigs { get; set; } = new();
 
 	}

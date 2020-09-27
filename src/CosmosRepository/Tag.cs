@@ -1,6 +1,7 @@
-﻿using TaleLearnCode.SpeakingEngagementManager.Entities;
+﻿using System.Text.Json.Serialization;
+using TaleLearnCode.SpeakingEngagementManager.Entities;
 
-namespace CosmosRepository
+namespace TaleLearnCode.SpeakingEngagementManager.Repository.CosmosSDK
 {
 
 	/// <summary>
@@ -17,6 +18,7 @@ namespace CosmosRepository
 		/// <value>
 		/// A <c>string</c> representing the tag identifier.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.Tag.Id)]
 		public string Id { get; init; }
 
 		/// <summary>
@@ -25,6 +27,7 @@ namespace CosmosRepository
 		/// <value>
 		/// A <c>string</c> representing the data owner's email address.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.PartitionKey.CosmosPartitionKey)]
 		public string OwnerEmailAddress { get; set; }
 
 		/// <summary>
@@ -33,6 +36,7 @@ namespace CosmosRepository
 		/// <value>
 		/// A <c>string</c> representing the tag's name.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.Tag.Name)]
 		public string Name { get; set; }
 
 	}

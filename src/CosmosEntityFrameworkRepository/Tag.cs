@@ -1,4 +1,5 @@
-﻿using TaleLearnCode.SpeakingEngagementManager.Entities;
+﻿using System.Text.Json.Serialization;
+using TaleLearnCode.SpeakingEngagementManager.Entities;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework.Cosmos
 {
@@ -17,6 +18,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework.Cos
 		/// <value>
 		/// A <c>string</c> representing the data owner's email address.
 		/// </value>
+		[JsonPropertyName(Entities.PropertyNames.PartitionKey.CosmosPartitionKey)]
 		public string OwnerEmailAddress { get; set; }
 
 	}
