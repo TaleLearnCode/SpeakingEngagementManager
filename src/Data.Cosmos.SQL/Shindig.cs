@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using TaleLearnCode.SpeakingEngagementManager.Domain;
 
-namespace TaleLearnCode.SpeakingEngagementManager.Repository.CosmosSDK
+namespace TaleLearnCode.SpeakingEngagementManager.Data.Cosmos.SQL
 {
 
 	/// <summary>
