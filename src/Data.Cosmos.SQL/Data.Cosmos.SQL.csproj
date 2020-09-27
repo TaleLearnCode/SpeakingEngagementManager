@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-		<AssemblyName>TaleLearnCode.SpeakingEngagementManager.Repository.CosmosSDK</AssemblyName>
-		<RootNamespace>TaleLearnCode.SpeakingEngagementManager.Repository.CosmosSDK</RootNamespace>
+		<AssemblyName>TaleLearnCode.SpeakingEngagementManager.Data.Cosmos.SQL</AssemblyName>
+		<RootNamespace>TaleLearnCode.SpeakingEngagementManager.Data.Cosmos.SQL</RootNamespace>
 	</PropertyGroup>
 
   <ItemGroup>
