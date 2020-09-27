@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+		<AssemblyName>TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos</AssemblyName>
+		<RootNamespace>TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos</RootNamespace>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data.EntityFramework\Data.EntityFramework.csproj" />
+  </ItemGroup>
+
+</Project>
