@@ -21,6 +21,24 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 		[JsonPropertyName(Domain.PropertyNames.PartitionKey.CosmosPartitionKey)]
 		public string OwnerEmailAddress { get; set; }
 
+		/// <summary>
+		/// Gets or sets the associated <see cref="Presentation"/>.
+		/// </summary>
+		/// <value>
+		/// A <see cref="Presentation"/> representing the associated presentation.
+		/// </value>
+		[JsonPropertyName("presentation")]
+		public new Presentation Presentation { get; set; }
+
+		/// <summary>
+		/// Gets or sets the associated <see cref="SessionType"/>.
+		/// </summary>
+		/// <value>
+		/// A <see cref="SessionType"/> representing the associated session type.
+		/// </value>
+		[JsonPropertyName("sessionType")]
+		public new SessionType SessionType { get; set; }
+
 	}
 
 }

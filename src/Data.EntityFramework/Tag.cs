@@ -37,7 +37,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 		/// A <see cref="List{PresentationTag}"/> representing the associated presentations.
 		/// </value>
 		[JsonPropertyName("presentationTags")]
-		public List<PresentationTag> PresentationTags { get; set; } = new List<PresentationTag>();
+		public List<PresentationTag> PresentationTags { get; set; } = new();
 
 	}
 

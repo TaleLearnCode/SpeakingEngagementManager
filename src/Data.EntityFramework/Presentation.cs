@@ -74,7 +74,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 		/// A <see cref="List{string}"/> representing the presentation learning objectives.
 		/// </value>
 		[JsonPropertyName(Domain.PropertyNames.Presentation.LearningObjectives)]
-		public List<string> LearningObjectives { get; set; } = new List<string>();
+		public List<string> LearningObjectives { get; set; } = new();
 
 		/// <summary>
 		/// Gets or sets the associated session types.
@@ -83,7 +83,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 		/// A <see cref="List{PresentationSessionType}"/> representing the session types associated with the presentation.
 		/// </value>
 		[JsonPropertyName("presentationSessionTypes")]
-		public List<PresentationSessionType> PresentationSessionTypes { get; set; } = new List<PresentationSessionType>();
+		public List<PresentationSessionType> PresentationSessionTypes { get; set; } = new();
 
 		/// <summary>
 		/// Gets or sets the associated shindigs.
@@ -92,7 +92,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 		/// A <see cref="List{PresentationShindig}"/> representing the shindigs associated with the presentation.
 		/// </value>
 		[JsonPropertyName("presentationShindigs")]
-		public List<PresentationShindig> PresentationShindigs { get; set; } = new List<PresentationShindig>();
+		public List<PresentationShindig> PresentationShindigs { get; set; } = new();
 
 		/// <summary>
 		/// Gets or sets the associated tags.
@@ -101,7 +101,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 		/// A <see cref="List{PresentationTag}"/> representing the tags associated with the presentation.
 		/// </value>
 		[JsonPropertyName("presentationTags")]
-		public List<PresentationTag> PresentationTags { get; set; } = new List<PresentationTag>();
+		public List<PresentationTag> PresentationTags { get; set; } = new();
 
 	}
 
