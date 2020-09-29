@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using TaleLearnCode.SpeakingEngagementManager.Domain;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
@@ -37,6 +38,15 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 		/// </value>
 		[JsonPropertyName(Domain.PropertyNames.SessionType.Duration)]
 		public int Duration { get; set; }
+
+		/// <summary>
+		/// Gets or sets the presentations associated with the session type.
+		/// </summary>
+		/// <value>
+		/// A <see cref="List{PresentationSessionType}"/> representing the associated presentations.
+		/// </value>
+		[JsonPropertyName("presentationSessionTypes")]
+		public List<PresentationSessionType> PresentationSessionTypes { get; set; } = new();
 
 	}
 

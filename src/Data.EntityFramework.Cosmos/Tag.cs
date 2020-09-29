@@ -1,7 +1,8 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using TaleLearnCode.SpeakingEngagementManager.Domain;
 
-namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework.Cosmos
+namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 {
 
 	/// <summary>
@@ -20,6 +21,16 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework.Cos
 		/// </value>
 		[JsonPropertyName(Domain.PropertyNames.PartitionKey.CosmosPartitionKey)]
 		public string OwnerEmailAddress { get; set; }
+
+		/// <summary>
+		/// Gets or sets the presentations associated with the tag.
+		/// </summary>
+		/// <value>
+		/// A <see cref="List{PresentationTag}"/> representing the associated presentations.
+		/// </value>
+		[JsonPropertyName("presentationTags")]
+		public new List<PresentationTag> PresentationTags { get; set; } = new();
+
 
 	}
 

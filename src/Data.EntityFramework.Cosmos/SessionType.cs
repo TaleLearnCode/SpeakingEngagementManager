@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using TaleLearnCode.SpeakingEngagementManager.Domain;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
@@ -20,6 +21,15 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 		/// </value>
 		[JsonPropertyName(Domain.PropertyNames.PartitionKey.CosmosPartitionKey)]
 		public string OwnerEmailAddress { get; set; }
+
+		/// <summary>
+		/// Gets or sets the presentations associated with the session type.
+		/// </summary>
+		/// <value>
+		/// A <see cref="List{PresentationSessionType}"/> representing the associated presentations.
+		/// </value>
+		[JsonPropertyName("presentationSessionTypes")]
+		public new List<PresentationSessionType> PresentationSessionTypes { get; set; } = new();
 
 	}
 

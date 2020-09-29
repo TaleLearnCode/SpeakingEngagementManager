@@ -1,7 +1,8 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using TaleLearnCode.SpeakingEngagementManager.Domain;
 
-namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework.Cosmos
+namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 {
 
 	/// <summary>
@@ -9,7 +10,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework.Cos
 	/// </summary>
 	/// <seealso cref="EntityFramework.Shindig" />
 	/// <seealso cref="IPartitionKey" />
-	public class Shindig : Data.EntityFramework.Shindig, IPartitionKey
+	public class Shindig : EntityFramework.Shindig, IPartitionKey
 	{
 
 		/// <summary>
@@ -20,6 +21,15 @@ namespace TaleLearnCode.SpeakingEngagementManager.Repository.EntityFramework.Cos
 		/// </value>
 		[JsonPropertyName(Domain.PropertyNames.PartitionKey.CosmosPartitionKey)]
 		public string OwnerEmailAddress { get; set; }
+
+		/// <summary>
+		/// Gets or sets the presentations associated with the shindig.
+		/// </summary>
+		/// <value>
+		/// A <see cref="List{PresentationShindig}"/> representing the list of associated presentations.
+		/// </value>
+		[JsonPropertyName("presentationShindigs")]
+		public new List<PresentationShindig> PresentationShindigs { get; set; } = new();
 
 	}
 

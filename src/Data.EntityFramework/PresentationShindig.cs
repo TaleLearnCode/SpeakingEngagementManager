@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 {
@@ -46,14 +47,13 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 		public Shindig Shindig { get; set; }
 
 		/// <summary>
-		/// Gets or sets the email address of the data owner.
+		/// Gets or sets the presentations associated with the shindigs.
 		/// </summary>
 		/// <value>
-		/// A <c>string</c> representing the data owner's email address.
+		/// A <see cref="List{PresentationShindig}"/> representing the associated presentations.
 		/// </value>
-		[JsonPropertyName(Domain.PropertyNames.PartitionKey.CosmosPartitionKey)]
-		public string OwnerEmailAddress { get; set; }
-
+		[JsonPropertyName("presentationShindigs")]
+		public List<PresentationShindig> PresentationShindigs { get; set; }
 
 	}
 
