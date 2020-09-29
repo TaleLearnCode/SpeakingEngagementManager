@@ -23,6 +23,15 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 		public string Id { get; init; } = Guid.NewGuid().ToString();
 
 		/// <summary>
+		/// Gets or sets the email address of the data owner.
+		/// </summary>
+		/// <value>
+		/// A <c>string</c> representing the data owner's email address.
+		/// </value>
+		[JsonPropertyName(Domain.PropertyNames.PartitionKey.CosmosPartitionKey)]
+		public string OwnerEmailAddress { get; set; }
+
+		/// <summary>
 		/// Gets or sets the name of the presentation.
 		/// </summary>
 		/// <value>

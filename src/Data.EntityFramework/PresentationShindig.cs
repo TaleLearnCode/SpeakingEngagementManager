@@ -45,6 +45,16 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 		[JsonPropertyName("shindig")]
 		public Shindig Shindig { get; set; }
 
+		/// <summary>
+		/// Gets or sets the email address of the data owner.
+		/// </summary>
+		/// <value>
+		/// A <c>string</c> representing the data owner's email address.
+		/// </value>
+		[JsonPropertyName(Domain.PropertyNames.PartitionKey.CosmosPartitionKey)]
+		public string OwnerEmailAddress { get; set; }
+
+
 	}
 
 }

@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using TaleLearnCode.SpeakingEngagementManager.Domain;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 {
@@ -6,7 +7,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 	/// <summary>
 	/// Represents the many-to-many relationship between presentations and session types.
 	/// </summary>
-	public class PresentationSessionType : IPresentationSessionType
+	public class PresentationSessionType : IPresentationSessionType, IPartitionKey
 	{
 
 		/// <summary>
@@ -44,6 +45,16 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 		/// </value>
 		[JsonPropertyName("sessionType")]
 		public SessionType SessionType { get; set; }
+
+		/// <summary>
+		/// Gets or sets the email address of the data owner.
+		/// </summary>
+		/// <value>
+		/// A <c>string</c> representing the data owner's email address.
+		/// </value>
+		[JsonPropertyName(Domain.PropertyNames.PartitionKey.CosmosPartitionKey)]
+		public string OwnerEmailAddress { get; set; }
+
 
 	}
 
