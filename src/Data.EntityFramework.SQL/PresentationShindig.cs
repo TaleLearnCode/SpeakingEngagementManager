@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TaleLearnCode.SpeakingEngagementManager.Domain;
 
-namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
+namespace TaleLearnCode.SpeakingEngagmentManager.Data.EntityFramework.SQL
 {
 
 	/// <summary>
@@ -9,16 +9,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 	/// </summary>
 	/// <seealso cref="EntityFramework.PresentationShindig" />
 	/// <seealso cref="IPartitionKey" />
-	public class PresentationShindig : IPartitionKey
+	public class PresentationShindig
 	{
-
-		/// <summary>
-		/// Gets or sets the email address of the data owner.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the data owner's email address.
-		/// </value>
-		public string OwnerEmailAddress { get; set; }
 
 		/// <summary>
 		/// Gets or sets the identifier of the associated <see cref="Presentation"/>.

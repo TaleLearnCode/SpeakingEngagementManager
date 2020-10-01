@@ -25,7 +25,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 		/// A <see cref="Presentation"/> representing the associated presentation.
 		/// </value>
 		[JsonPropertyName("presentation")]
-		public Presentation Presentation { get; set; }
+		public virtual Presentation Presentation { get; set; }
 
 		/// <summary>
 		/// Gets or sets the identifier of the associated <see cref="Tag"/>.

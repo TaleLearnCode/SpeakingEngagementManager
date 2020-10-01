@@ -28,7 +28,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 		/// <value>
 		/// A <c>string</c> representing the data owner's email address.
 		/// </value>
-		[JsonPropertyName(Domain.PropertyNames.PartitionKey.CosmosPartitionKey)]
+		//[JsonPropertyName(Domain.PropertyNames.PartitionKey.CosmosPartitionKey)]
 		public string OwnerEmailAddress { get; set; }
 
 		/// <summary>
@@ -67,14 +67,14 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework
 		[JsonPropertyName(Domain.PropertyNames.Presentation.HundredCharacterAbstract)]
 		public string HundredCharacterAbstract { get; set; }
 
-		/// <summary>
-		/// Gets or sets the learning objectives for the presentation.
-		/// </summary>
-		/// <value>
-		/// A <see cref="List{string}"/> representing the presentation learning objectives.
-		/// </value>
-		[JsonPropertyName(Domain.PropertyNames.Presentation.LearningObjectives)]
-		public List<string> LearningObjectives { get; set; } = new();
+		///// <summary>
+		///// Gets or sets the learning objectives for the presentation.
+		///// </summary>
+		///// <value>
+		///// A <see cref="List{string}"/> representing the presentation learning objectives.
+		///// </value>
+		//[JsonPropertyName(Domain.PropertyNames.Presentation.LearningObjectives)]
+		//public List<string> LearningObjectives { get; set; } = new();
 
 		/// <summary>
 		/// Gets or sets the associated session types.
