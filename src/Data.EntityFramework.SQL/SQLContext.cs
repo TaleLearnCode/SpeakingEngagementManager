@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework;
 
-namespace Data.EntityFramework.SQL
-{
+namespace TaleLearnCode.SpeakingEngagmentManager.Data.EntityFramework.SQL
+{ 
 
 	public class SQLContext : DbContext
 	{

@@ -96,7 +96,16 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 			modelBuilder.Entity<Shindig>().HasPartitionKey(p => p.OwnerEmailAddress);
 			modelBuilder.Entity<Tag>().HasPartitionKey(p => p.OwnerEmailAddress);
 
+			modelBuilder.Entity<Presentation>(
+				sa =>
+				{
+					sa.Property(p => p.OwnerEmailAddress).ToJsonProperty("ownerEmailAddress");
+				});
+
+
+
 		}
+
 
 	}
 

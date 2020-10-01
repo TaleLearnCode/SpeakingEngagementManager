@@ -1,23 +1,11 @@
-﻿using TaleLearnCode.SpeakingEngagementManager.Domain;
-
-namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
+﻿namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
 
 	/// <summary>
-	/// Represents the many-to-many relationship between presentations and tags.
+	/// Interface to for types representing the many-to-many relationship between presentations and shindigs.
 	/// </summary>
-	/// <seealso cref="EntityFramework.PresentationTag" />
-	/// <seealso cref="IPartitionKey" />
-	public class PresentationTag : IPartitionKey
+	public interface IPresentationTag
 	{
-
-		/// <summary>
-		/// Gets or sets the email address of the data owner.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the data owner's email address.
-		/// </value>
-		public string OwnerEmailAddress { get; set; }
 
 		/// <summary>
 		/// Gets or sets the identifier of the associated <see cref="Presentation"/>.
@@ -25,7 +13,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 		/// <value>
 		/// A <c>string</c> representing the associated Presentation identifier.
 		/// </value>
-		public string PresentationId { get; set; }
+		string PresentationId { get; set; }
 
 		/// <summary>
 		/// Gets or sets the associated <see cref="Presentation"/>.
@@ -33,7 +21,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 		/// <value>
 		/// A <see cref="Presentation"/> representing the associated presentation.
 		/// </value>
-		public virtual Presentation Presentation { get; set; }
+		IPresentation Presentation { get; set; }
 
 		/// <summary>
 		/// Gets or sets the identifier of the associated <see cref="Tag"/>.
@@ -41,7 +29,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 		/// <value>
 		/// A <c>string</c> representing the associated tag identifier.
 		/// </value>
-		public string TagId { get; set; }
+		string TagId { get; set; }
 
 		/// <summary>
 		/// Gets or sets the associated <see cref="Tag"/>.
@@ -49,7 +37,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 		/// <value>
 		/// A <see cref="Tag"/> representing the associated tag.
 		/// </value>
-		public Tag Tag { get; set; }
+		ITag Tag { get; set; }
 
 	}
 

@@ -37,6 +37,21 @@
 		/// </summary>
 		public const string LearningObjectives = "learningObjectives";
 
+		/// <summary>
+		/// The JSON property name for the PresentationSessionTypes property.
+		/// </summary>
+		public const string PresentationSessionTypes = "presentationSessionTypes";
+
+		/// <summary>
+		/// The JSON property name for the PresentationShindigs property.
+		/// </summary>
+		public const string PresentationShindigs = "presentationShindigs";
+
+		/// <summary>
+		/// The JSON property name for the PresentationTags property.
+		/// </summary>
+		public const string PresentationTags = "presentationTags";
+
 	}
 
 }

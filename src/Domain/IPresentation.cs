@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace TaleLearnCode.SpeakingEngagementManager.Domain
+﻿namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
 
 	/// <summary>
@@ -49,13 +47,13 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// </value>
 		string HundredCharacterAbstract { get; set; }
 
-		/// <summary>
-		/// Gets or sets the learning objectives for the presentation.
-		/// </summary>
-		/// <value>
-		/// A <see cref="List{string}"/> representing the presentation learning objectives.
-		/// </value>
-		List<string> LearningObjectives { get; set; }
+		///// <summary>
+		///// Gets or sets the learning objectives for the presentation.
+		///// </summary>
+		///// <value>
+		///// A <see cref="List{string}"/> representing the presentation learning objectives.
+		///// </value>
+		//List<string> LearningObjectives { get; set; }
 
 	}
 
