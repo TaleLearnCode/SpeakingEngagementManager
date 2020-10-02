@@ -17,6 +17,11 @@
 		/// </summary>
 		public const string Name = "name";
 
+		/// <summary>
+		/// The JSON property name for the <c>Tag.PresentationTags</c> property.
+		/// </summary>
+		public const string PresentationTags = "presenationTags";
+
 	}
 
 }

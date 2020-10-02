@@ -2,10 +2,17 @@
 
 namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 {
-	internal partial class CreateModel
+
+	internal static partial class CreateModel
 	{
 
-		internal void Presentation(ModelBuilder modelBuilder)
+		/// <summary>
+		/// Creates the EF model for the <see cref="Cosmos.Presentation"/>
+		/// </summary>
+		/// <param name="modelBuilder">The builder being used to construct the model for this context. Databases (and other extensions) typically
+		/// define extension methods on this object that allow you to configure aspects of the model that are specific
+		/// to a given database.</param>
+		internal static void Presentation(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<Presentation>(
 				entity =>

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>TaleLearnCode.SpeakingEngagementManager.Domain</AssemblyName>
-    <RootNamespace>TaleLearnCode.SpeakingEngagementManager.Entities</RootNamespace>
+    <RootNamespace>TaleLearnCode.SpeakingEngagementManager.Domain</RootNamespace>
   </PropertyGroup>
 
 </Project>
