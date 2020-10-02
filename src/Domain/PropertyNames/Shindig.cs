@@ -37,6 +37,11 @@
 		/// </summary>
 		public const string IsVirtual = "isVirtual";
 
+		/// <summary>
+		/// The JSON property name for the Shindig.PresentationShindigs property.
+		/// </summary>
+		public const string PresentationShindigs = "presentationShindigs";
+
 	}
 
 }

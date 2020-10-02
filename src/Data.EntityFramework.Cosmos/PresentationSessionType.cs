@@ -8,7 +8,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 	/// </summary>
 	/// <seealso cref="EntityFramework.PresentationSessionType" />
 	/// <seealso cref="IPartitionKey" />
-	public class PresentationSessionType : IPartitionKey
+	public class PresentationSessionType : IPresentationSessionType, IPartitionKey
 	{
 
 		/// <summary>

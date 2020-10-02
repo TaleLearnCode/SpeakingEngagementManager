@@ -16,14 +16,6 @@
 		string PresentationId { get; set; }
 
 		/// <summary>
-		/// Gets or sets the associated <see cref="Presentation"/>.
-		/// </summary>
-		/// <value>
-		/// A <see cref="Presentation"/> representing the associated presentation.
-		/// </value>
-		IPresentation Presentation { get; set; }
-
-		/// <summary>
 		/// Gets or sets the identifier of the associated <see cref="Shindig"/>.
 		/// </summary>
 		/// <value>
@@ -31,13 +23,6 @@
 		/// </value>
 		string ShindigId { get; set; }
 
-		/// <summary>
-		/// Gets or sets the associated <see cref="Shindig"/>.
-		/// </summary>
-		/// <value>
-		/// A <see cref="Shindig"/> representing the associated tag.
-		/// </value>
-		IShindig Shindig { get; set; }
-
 	}
+
 }

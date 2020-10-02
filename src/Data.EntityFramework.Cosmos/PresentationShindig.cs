@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TaleLearnCode.SpeakingEngagementManager.Domain;
+﻿using TaleLearnCode.SpeakingEngagementManager.Domain;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 {
@@ -9,7 +8,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 	/// </summary>
 	/// <seealso cref="EntityFramework.PresentationShindig" />
 	/// <seealso cref="IPartitionKey" />
-	public class PresentationShindig : IPartitionKey
+	public class PresentationShindig : IPresentationShindig, IPartitionKey
 	{
 
 		/// <summary>
@@ -51,14 +50,6 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 		/// A <see cref="Shindig"/> representing the associated tag.
 		/// </value>
 		public Shindig Shindig { get; set; }
-
-		/// <summary>
-		/// Gets or sets the presentations associated with the shindigs.
-		/// </summary>
-		/// <value>
-		/// A <see cref="List{PresentationShindig}"/> representing the associated presentations.
-		/// </value>
-		public List<PresentationShindig> PresentationShindigs { get; set; }
 
 	}
 

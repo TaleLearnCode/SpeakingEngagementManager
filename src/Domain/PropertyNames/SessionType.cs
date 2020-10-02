@@ -22,6 +22,11 @@
 		/// </summary>
 		public const string Duration = "duration";
 
+		/// <summary>
+		/// The JSON property name for the <c>PresentationSessionTypes</c> property.
+		/// </summary>
+		public const string PresentationSessionTypes = "presenationSessionTypes";
+
 	}
 
 }
