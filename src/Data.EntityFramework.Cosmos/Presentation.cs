@@ -61,38 +61,38 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 		/// </value>
 		public string HundredCharacterAbstract { get; set; }
 
+		/////// <summary>
+		/////// Gets or sets the learning objectives for the presentation.
+		/////// </summary>
+		/////// <value>
+		/////// A <see cref="List{string}"/> representing the presentation learning objectives.
+		/////// </value>
+		////[JsonPropertyName(Domain.PropertyNames.Presentation.LearningObjectives)]
+		////public List<string> LearningObjectives { get; set; } = new();
+
 		///// <summary>
-		///// Gets or sets the learning objectives for the presentation.
+		///// Gets or sets the associated session types.
 		///// </summary>
 		///// <value>
-		///// A <see cref="List{string}"/> representing the presentation learning objectives.
+		///// A <see cref="List{PresentationSessionType}"/> representing the session types associated with the presentation.
 		///// </value>
-		//[JsonPropertyName(Domain.PropertyNames.Presentation.LearningObjectives)]
-		//public List<string> LearningObjectives { get; set; } = new();
+		//public List<PresentationSessionType> PresentationSessionTypes { get; set; } = new();
 
-		/// <summary>
-		/// Gets or sets the associated session types.
-		/// </summary>
-		/// <value>
-		/// A <see cref="List{PresentationSessionType}"/> representing the session types associated with the presentation.
-		/// </value>
-		public List<PresentationSessionType> PresentationSessionTypes { get; set; } = new();
+		///// <summary>
+		///// Gets or sets the associated shindigs.
+		///// </summary>
+		///// <value>
+		///// A <see cref="List{PresentationShindig}"/> representing the shindigs associated with the presentation.
+		///// </value>
+		//public List<PresentationShindig> PresentationShindigs { get; set; } = new();
 
-		/// <summary>
-		/// Gets or sets the associated shindigs.
-		/// </summary>
-		/// <value>
-		/// A <see cref="List{PresentationShindig}"/> representing the shindigs associated with the presentation.
-		/// </value>
-		public List<PresentationShindig> PresentationShindigs { get; set; } = new();
-
-		/// <summary>
-		/// Gets or sets the associated tags.
-		/// </summary>
-		/// <value>
-		/// A <see cref="List{PresentationTag}"/> representing the tags associated with the presentation.
-		/// </value>
-		public List<PresentationTag> PresentationTags { get; set; } = new();
+		///// <summary>
+		///// Gets or sets the associated tags.
+		///// </summary>
+		///// <value>
+		///// A <see cref="List{PresentationTag}"/> representing the tags associated with the presentation.
+		///// </value>
+		//public List<PresentationTag> PresentationTags { get; set; } = new();
 
 	}
 

@@ -50,11 +50,11 @@ namespace TaleLearnCode.SpeakingEngagementManager.Consumer.EntityFramework.Cosmo
 			await context.SaveChangesAsync();
 
 
-			var tag = new Tag() { Name = "Azure Cosmos DB", OwnerEmailAddress = "chadgreen@chadgreen.com" };
-			tag.PresentationTags.Add(new PresentationTag() { Presentation = myPresentation, PresentationId = myPresentation.Id, Tag = tag, TagId = tag.Id });
-			context.Add(tag);
+			//var tag = new Tag() { Name = "Azure Cosmos DB", OwnerEmailAddress = "chadgreen@chadgreen.com" };
+			//tag.PresentationTags.Add(new PresentationTag() { Presentation = myPresentation, PresentationId = myPresentation.Id, Tag = tag, TagId = tag.Id });
+			//context.Add(tag);
 
-			await context.SaveChangesAsync();
+			//await context.SaveChangesAsync();
 
 
 

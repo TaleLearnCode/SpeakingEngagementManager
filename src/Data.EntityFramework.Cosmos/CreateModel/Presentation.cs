@@ -24,9 +24,9 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 					entity.Property(p => p.Abstract).ToJsonProperty(Domain.PropertyNames.Presentation.Abstract);
 					entity.Property(p => p.ShortAbstract).ToJsonProperty(Domain.PropertyNames.Presentation.ShortAbstract);
 					entity.Property(p => p.HundredCharacterAbstract).ToJsonProperty(Domain.PropertyNames.Presentation.HundredCharacterAbstract);
-					entity.Property(p => p.PresentationSessionTypes).ToJsonProperty(Domain.PropertyNames.Presentation.PresentationSessionTypes);
-					entity.Property(p => p.PresentationShindigs).ToJsonProperty(Domain.PropertyNames.Presentation.PresentationShindigs);
-					entity.Property(p => p.PresentationTags).ToJsonProperty(Domain.PropertyNames.Presentation.PresentationTags);
+					//entity.Property(p => p.PresentationSessionTypes).ToJsonProperty(Domain.PropertyNames.Presentation.PresentationSessionTypes);
+					//entity.Property(p => p.PresentationShindigs).ToJsonProperty(Domain.PropertyNames.Presentation.PresentationShindigs);
+					//entity.Property(p => p.PresentationTags).ToJsonProperty(Domain.PropertyNames.Presentation.PresentationTags);
 				});
 
 		}

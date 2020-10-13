@@ -28,12 +28,12 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 		}
 
 		public DbSet<Presentation> Presentations { get; set; }
-		public DbSet<PresentationSessionType> PresentationSessionTypes { get; set; }
-		public DbSet<PresentationShindig> PresentationShindigs { get; set; }
-		public DbSet<PresentationTag> PresentationTags { get; set; }
-		public DbSet<SessionType> SessionTypes { get; set; }
-		public DbSet<Shindig> Shindigs { get; set; }
-		public DbSet<Tag> Tags { get; set; }
+		//public DbSet<PresentationSessionType> PresentationSessionTypes { get; set; }
+		//public DbSet<PresentationShindig> PresentationShindigs { get; set; }
+		//public DbSet<PresentationTag> PresentationTags { get; set; }
+		//public DbSet<SessionType> SessionTypes { get; set; }
+		//public DbSet<Shindig> Shindigs { get; set; }
+		//public DbSet<Tag> Tags { get; set; }
 
 		/// <summary>
 		/// <para>
@@ -71,12 +71,12 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			CreateModel.Presentation(modelBuilder);
-			CreateModel.PresentationSessionType(modelBuilder);
-			CreateModel.PresentationShindig(modelBuilder);
-			CreateModel.PresentationTag(modelBuilder);
-			CreateModel.SessionType(modelBuilder);
-			CreateModel.Shindig(modelBuilder);
-			CreateModel.Tag(modelBuilder);
+			//CreateModel.PresentationSessionType(modelBuilder);
+			//CreateModel.PresentationShindig(modelBuilder);
+			//CreateModel.PresentationTag(modelBuilder);
+			//CreateModel.SessionType(modelBuilder);
+			//CreateModel.Shindig(modelBuilder);
+			//CreateModel.Tag(modelBuilder);
 		}
 
 	}

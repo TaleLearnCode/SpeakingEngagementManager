@@ -25,9 +25,9 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 					entity.Property(p => p.TagId).ToJsonProperty(Domain.PropertyNames.PresentationTag.TagId);
 					entity.Property(p => p.Tag).ToJsonProperty(Domain.PropertyNames.PresentationTag.Tag);
 
-					entity.HasKey(m => new { m.PresentationId, m.TagId });
-					entity.HasOne(m => m.Presentation).WithMany(m => m.PresentationTags).HasForeignKey(k => k.PresentationId);
-					entity.HasOne(m => m.Tag).WithMany(m => m.PresentationTags).HasForeignKey(k => k.TagId);
+					//entity.HasKey(m => new { m.PresentationId, m.TagId });
+					//entity.HasOne(m => m.Presentation).WithMany(m => m.PresentationTags).HasForeignKey(k => k.PresentationId);
+					//entity.HasOne(m => m.Tag).WithMany(m => m.PresentationTags).HasForeignKey(k => k.TagId);
 				});
 		}
 
