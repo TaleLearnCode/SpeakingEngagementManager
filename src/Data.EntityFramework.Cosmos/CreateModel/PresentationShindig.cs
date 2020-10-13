@@ -25,9 +25,9 @@ namespace TaleLearnCode.SpeakingEngagementManager.Data.EntityFramework.Cosmos
 					entity.Property(p => p.ShindigId).ToJsonProperty(Domain.PropertyNames.PresentationSessionType.SessionTypeId);
 					entity.Property(p => p.Shindig).ToJsonProperty(Domain.PropertyNames.PresentationSessionType.SessionType);
 
-					entity.HasKey(m => new { m.PresentationId, m.ShindigId });
-					entity.HasOne(m => m.Presentation).WithMany(m => m.PresentationShindigs).HasForeignKey(k => k.PresentationId);
-					entity.HasOne(m => m.Shindig).WithMany(m => m.PresentationShindigs).HasForeignKey(k => k.ShindigId);
+					//entity.HasKey(m => new { m.PresentationId, m.ShindigId });
+					//entity.HasOne(m => m.Presentation).WithMany(m => m.PresentationShindigs).HasForeignKey(k => k.PresentationId);
+					//entity.HasOne(m => m.Shindig).WithMany(m => m.PresentationShindigs).HasForeignKey(k => k.ShindigId);
 				});
 		}
 
