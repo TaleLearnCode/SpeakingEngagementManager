@@ -5,10 +5,6 @@ VisualStudioVersion = 16.0.30608.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src2\Domain\Domain.csproj", "{686D007E-AE4F-4C49-8ED3-947332BBF778}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.EnttityFramework.Cosmos", "src2\Data.EnttityFramework.Cosmos\Data.EnttityFramework.Cosmos.csproj", "{8C595AE4-2700-4641-B56F-5883E70EEB34}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer.EntityFramework.Cosmos", "src2\Consumer.EntityFramework.Cosmos\Consumer.EntityFramework.Cosmos.csproj", "{4C56301C-9304-44EF-974E-19C11142D287}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,14 +15,6 @@ Global
 		{686D007E-AE4F-4C49-8ED3-947332BBF778}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{686D007E-AE4F-4C49-8ED3-947332BBF778}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{686D007E-AE4F-4C49-8ED3-947332BBF778}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C595AE4-2700-4641-B56F-5883E70EEB34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C595AE4-2700-4641-B56F-5883E70EEB34}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C595AE4-2700-4641-B56F-5883E70EEB34}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C595AE4-2700-4641-B56F-5883E70EEB34}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C56301C-9304-44EF-974E-19C11142D287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C56301C-9304-44EF-974E-19C11142D287}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C56301C-9304-44EF-974E-19C11142D287}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C56301C-9304-44EF-974E-19C11142D287}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TaleLearnCode.SpeakingEngagementManager.Domain
+﻿namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
 	/// <summary>
 	/// Interface for objects representing a presentation presented by a speaker.

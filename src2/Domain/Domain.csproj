@@ -1,9 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>TaleLearnCode.SpeakingEngagementManager.Domain</AssemblyName>
-    <RootNamespace>TaleLearnCode.SpeakingEngagementManager.Domain</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+		<AssemblyName>TaleLearnCode.SpeakingEngagementManager.Domain</AssemblyName>
+		<RootNamespace>TaleLearnCode.SpeakingEngagementManager.Domain</RootNamespace>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="PropertyNames/*.cs" />
+		<Compile Include="*_3.cs" Condition="'$(TargetFramework)' == 'netcoreapp3.1'" />
+		<Compile Include="*_5.cs" Condition="'$(TargetFramework)' == 'net5.0'" />
+	</ItemGroup>
 
 </Project>
