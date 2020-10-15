@@ -7,8 +7,4 @@
     <RootNamespace>TaleLearnCode.SpeakingEngagementManager.Consumer</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Data.EnttityFramework.Cosmos\Data.EnttityFramework.Cosmos.csproj" />
-  </ItemGroup>
-
 </Project>

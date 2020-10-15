@@ -1,17 +1,14 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Text.Json.Serialization;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
-
 	/// <summary>
 	/// Represents a presentation presented by a speaker.
 	/// </summary>
 	/// <seealso cref="IPresentation" />
 	/// <seealso cref="IPartitionKey" />
-	public class Presentation : IPresentation, IPartitionKey
+	public class Presentation //: IPresentation, IPartitionKey
 	{
 
 		/// <summary>
@@ -21,7 +18,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// A <c>string</c> representing the presentation identifier.
 		/// </value>
 		[JsonPropertyName(Domain.PropertyNames.Presentation.Id)]
-		public string Id { get; init; } = Guid.NewGuid().ToString();
+		public string Id { get; set; } = Guid.NewGuid().ToString();
 
 		/// <summary>
 		/// Gets or sets the email address of the data owner.
@@ -95,14 +92,14 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		//[JsonPropertyName("shindigs")]
 		//public List<Shindig> Shindigs { get; set; } = new();
 
-		/// <summary>
-		/// Gets or sets the tags associated with the presentation.
-		/// </summary>
-		/// <value>
-		/// A <see cref="List{Tag}"/> representing the presentation tags.
-		/// </value>
-		[JsonPropertyName("tags")]
-		public List<Tag> Tags { get; set; } = new();
+		///// <summary>
+		///// Gets or sets the tags associated with the presentation.
+		///// </summary>
+		///// <value>
+		///// A <see cref="List{Tag}"/> representing the presentation tags.
+		///// </value>
+		//[JsonPropertyName("tags")]
+		//public List<Tag> Tags { get; set; } = new();
 
 	}
 
