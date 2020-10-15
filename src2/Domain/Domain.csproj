@@ -8,8 +8,8 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<Compile Include="PropertyNames/*.cs" />
-		<Compile Include="*_3.cs" Condition="'$(TargetFramework)' == 'netcoreapp3.1'" />
-		<Compile Include="*_5.cs" Condition="'$(TargetFramework)' == 'net5.0'" />
+		<Compile Include="IPartitionKey.cs" />
+		<Compile Include="netcoreapp3.1/*.cs" Condition="'$(TargetFramework)' == 'netcoreapp3.1'" />
+		<Compile Include="net5.0/*.cs" Condition="'$(TargetFramework)' == 'net5.0'" />
 	</ItemGroup>
-
 </Project>
