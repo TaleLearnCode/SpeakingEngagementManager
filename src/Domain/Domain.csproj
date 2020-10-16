@@ -1,9 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>TaleLearnCode.SpeakingEngagementManager.Domain</AssemblyName>
-    <RootNamespace>TaleLearnCode.SpeakingEngagementManager.Domain</RootNamespace>
-  </PropertyGroup>
-
+	<PropertyGroup>
+		<TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
+		<AssemblyName>TaleLearnCode.SpeakingEngagementManager.Domain</AssemblyName>
+		<RootNamespace>TaleLearnCode.SpeakingEngagementManager.Domain</RootNamespace>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="IDGenerator.cs" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+		<Compile Include="netcore31/*.cs" />
+		<PackageReference Include="System.Text.Json" Version="4.7.2" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+		<Compile Include="net50/*.cs" />
+	</ItemGroup>
 </Project>
