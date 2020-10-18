@@ -7,7 +7,7 @@
 		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
 	</PropertyGroup>
 	<ItemGroup>
-		<Compile Include="IDGenerator.cs" />
+		<Compile Include="*.cs" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
 		<Compile Include="netcore31/*.cs" />
