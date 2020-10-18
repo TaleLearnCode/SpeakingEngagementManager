@@ -143,6 +143,76 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 
 		}
 
+		public async Task<string> WritePresentationAsync()
+		{
+
+			var presentation = new Presentation()
+			{
+				OwnerEmailAddress = "chadgreen@chadgreen.com",
+				Name = "Building .NET Applications Using Azure Cosmos DB",
+				Abstract = "A really great presentation",
+				ShortAbstract = "Great presentation",
+				ElevatorPitch = "Amazing",
+				WhyAttend = "Because Cosmos is just really cool and you want to use it."
+			};
+			presentation.LearningObjectives.Add("The first objective");
+			presentation.LearningObjectives.Add("The second objective");
+			presentation.Tags.Add(new Tag() { Name = "Azure", OwnerEmailAddress = "chadgreen@chadgreen.com" });
+			presentation.Tags.Add(new Tag() { Name = ".NET", OwnerEmailAddress = "chadgreen@chadgreen.com" });
+			presentation.Tags.Add(new Tag() { Name = "Cosmos DB", OwnerEmailAddress = "chadgreen@chadgreen.com" });
+			presentation.Tags.Add(new Tag() { Name = "Microsoft", OwnerEmailAddress = "chadgreen@chadgreen.com" });
+			presentation.SessionTypes.Add(new SessionType { Name = "60-Minute Session", Duration = 60, OwnerEmailAddress = "chadgreen@chadgreen.com" });
+			presentation.Outline.Add("Section One");
+			presentation.Outline.Add("Section Two");
+			presentation.Outline.Add("Section Three");
+
+			await _WriteContainer.CreateItemAsync(presentation);
+
+			return presentation.Id;
+
+		}
+
+		public async Task ReadPresentationDistinctlyAsync(string id)
+		{
+
+			QueryDefinition queryDefinition = new QueryDefinition($"SELECT * FROM c WHERE c.id = '{id}'");
+			List<Presentation> presentations = new();
+
+			await foreach (Response response in _ReadContainer.GetItemQueryStreamIterator(queryDefinition))
+			{
+				var queryStream = await JsonSerializer.DeserializeAsync<PresentationQueryStream>(
+					response.ContentStream,
+					new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+				presentations.AddRange(queryStream.Documents);
+			}
+
+			if (presentations.Any())
+				Console.WriteLine($"\tDistinct Presentation: {presentations[0].Name}");
+			else
+				Console.WriteLine("\tNo presentations were found");
+
+		}
+
+		public async Task ReadPresentationDynamicallyAsync(string id)
+		{
+
+			QueryDefinition queryDefinition = new QueryDefinition($"SELECT * FROM c WHERE c.id = '{id}'");
+			List<dynamic> shindigs = new List<dynamic>();
+
+			await foreach (Response response in _ReadContainer.GetItemQueryStreamIterator(queryDefinition))
+			{
+				var queryStream = await JsonSerializer.DeserializeAsync<QueryStream>(
+					response.ContentStream,
+					new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+				shindigs.AddRange(queryStream.Documents);
+			}
+
+			if (shindigs.Any())
+				Console.WriteLine($"\tDynamic Presentation: {(JsonSerializer.Deserialize<Presentation>(shindigs[0].ToString(), new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase })).Name}");
+			else
+				Console.WriteLine("\tNo presentations were found");
+
+		}
 
 	}
 

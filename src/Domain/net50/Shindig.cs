@@ -34,7 +34,6 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// <value>
 		/// A <see cref="string" /> representing the document identifier.
 		/// </value>
-		[JsonPropertyName("id")]
 		public string Id { get; init; } = IDGenerator.Generate();
 
 		/// <summary>
@@ -43,7 +42,6 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// <value>
 		/// A <c>string</c> representing the data owner's email address.
 		/// </value>
-		[JsonPropertyName("ownerEmailAddress")]
 		public string OwnerEmailAddress { get; set; }
 
 		/// <summary>

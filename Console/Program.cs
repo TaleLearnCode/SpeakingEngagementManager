@@ -1,18 +1,12 @@
-﻿using Azure;
-using Azure.Cosmos;
-using Azure.Cosmos.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using System;
 using System.Threading.Tasks;
-using TaleLearnCode.SpeakingEngagementManager.Domain;
 
 
 namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingEngagementManager.ConsoleApp
 {
 	class Program
 	{
+
 		static async Task Main(string[] args)
 		{
 
@@ -27,6 +21,20 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			Console.WriteLine("Reading the shindig document dynamically...");
 			await domainTesting.ReadShindigDynamicallyAsync(shindigId);
 
+			Console.WriteLine();
+			Console.WriteLine();
+
+			Console.WriteLine("Writing the presentation document...");
+			var presentationId = await domainTesting.WritePresentationAsync();
+
+			Console.WriteLine("Reading the presentation document distinctly...");
+			await domainTesting.ReadPresentationDistinctlyAsync(presentationId);
+
+			Console.WriteLine("Reading the presentation document dynamically...");
+			await domainTesting.ReadPresentationDynamicallyAsync(presentationId);
+
+			Console.WriteLine();
+			Console.WriteLine();
 
 			Console.WriteLine("Done testing");
 
