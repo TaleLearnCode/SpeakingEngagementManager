@@ -214,6 +214,78 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 
 		}
 
+
+		public async Task<T> ReadDocumentByIdDistrinclyAsync<T>(string id)
+		{
+
+			QueryDefinition queryDefinition = new QueryDefinition($"SELECT * FROM c WHERE c.id = '{id}'");
+			List<dynamic> shindigs = new List<dynamic>();
+
+			await foreach (Response response in _ReadContainer.GetItemQueryStreamIterator(queryDefinition))
+			{
+				var queryStream = await JsonSerializer.DeserializeAsync<QueryStream>(
+					response.ContentStream,
+					new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+				shindigs.AddRange(queryStream.Documents);
+			}
+
+			if (shindigs.Any())
+			{
+				return JsonSerializer.Deserialize<T>(shindigs[0].ToString(), new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+			}
+			else
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("\tNo shindigs were found");
+				Console.ForegroundColor = ConsoleColor.White;
+			}
+
+			return default;
+
+		}
+
+		public async Task<List<T>> DocumentQueryAsync<T>(string query)
+		{
+
+			List<T> returnValue = new();
+
+			var queryDefinition = new QueryDefinition(query);
+			List<dynamic> documents = new();
+
+			await foreach (Response response in _ReadContainer.GetItemQueryStreamIterator(queryDefinition))
+			{
+				var queryStream = await JsonSerializer.DeserializeAsync<QueryStream>(
+					response.ContentStream,
+					new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+				documents.AddRange(queryStream.Documents);
+			}
+
+			if (documents.Any())
+			{
+				foreach (var document in documents)
+				{
+					returnValue.Add(
+						JsonSerializer.Deserialize<T>(
+							document.ToString(),
+							new JsonSerializerOptions()
+							{
+								PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+							}
+							)
+						);
+				}
+			}
+			else
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("\tNo documents were found");
+				Console.ForegroundColor = ConsoleColor.White;
+			}
+
+			return returnValue;
+
+		}
+
 	}
 
 }
