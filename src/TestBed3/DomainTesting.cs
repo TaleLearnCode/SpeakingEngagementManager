@@ -8,7 +8,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using TaleLearnCode.SpeakingEngagementManager.Domain;
 
-namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingEngagementManager.ConsoleApp
+namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingEngagementManager.TestBed
 {
 
 	public class DomainTesting : IDisposable
@@ -27,8 +27,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 
 		public void Dispose()
 		{
-			if (_WriteCosmosClient is not null) _WriteCosmosClient.Dispose();
-			if (_ReadCosmosClient is not null) _ReadCosmosClient.Dispose();
+			if (_WriteCosmosClient != null) _WriteCosmosClient.Dispose();
+			if (_ReadCosmosClient != null) _ReadCosmosClient.Dispose();
 		}
 
 		private void InitializeWriteContainer()
@@ -176,7 +176,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 		{
 
 			QueryDefinition queryDefinition = new QueryDefinition($"SELECT * FROM c WHERE c.id = '{id}'");
-			List<Presentation> presentations = new();
+			List<Presentation> presentations = new List<Presentation>();
 
 			await foreach (Response response in _ReadContainer.GetItemQueryStreamIterator(queryDefinition))
 			{
@@ -247,10 +247,10 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 		public async Task<List<T>> DocumentQueryAsync<T>(string query)
 		{
 
-			List<T> returnValue = new();
+			List<T> returnValue = new List<T>();
 
 			var queryDefinition = new QueryDefinition(query);
-			List<dynamic> documents = new();
+			List<dynamic> documents = new List<dynamic>();
 
 			await foreach (Response response in _ReadContainer.GetItemQueryStreamIterator(queryDefinition))
 			{

@@ -2,12 +2,11 @@
 using System.Threading.Tasks;
 using TaleLearnCode.SpeakingEngagementManager.Domain;
 
-namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingEngagementManager.ConsoleApp
+namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingEngagementManager.TestBed
 {
 	class Program
 	{
-
-		static async Task Main(string[] args)
+		static async Task Main()
 		{
 
 			using var domainTesting = new DomainTesting();
