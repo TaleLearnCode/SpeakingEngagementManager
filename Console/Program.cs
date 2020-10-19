@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-
+using TaleLearnCode.SpeakingEngagementManager.Domain;
 
 namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingEngagementManager.ConsoleApp
 {
@@ -20,6 +20,14 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 
 			Console.WriteLine("Reading the shindig document dynamically...");
 			await domainTesting.ReadShindigDynamicallyAsync(shindigId);
+
+			Console.WriteLine("Reading the shindig document dynamically generically...");
+			var shindig = await domainTesting.ReadDocumentByIdDistrinclyAsync<Shindig>(shindigId);
+			Console.WriteLine($"\tDynamic Shindig:{shindig.Name}");
+
+			Console.WriteLine("Reading the shindig documents via a query dynamically, generically...");
+			var shindigs = await domainTesting.DocumentQueryAsync<Shindig>($"SELECT * FROM c WHERE c.id = '{shindigId}'");
+			Console.WriteLine($"\tShindig Query Returned {shindigs.Count} documents");
 
 			Console.WriteLine();
 			Console.WriteLine();
