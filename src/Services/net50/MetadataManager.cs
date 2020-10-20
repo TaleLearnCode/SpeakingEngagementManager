@@ -1,8 +1,4 @@
-﻿using Azure;
-using Azure.Cosmos;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
+﻿using Azure.Cosmos;
 using System.Threading.Tasks;
 using TaleLearnCode.SpeakingEngagementManager.Domain;
 
@@ -28,7 +24,11 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 
 		public async Task<T> GetMetadataByIdAsync<T>(string id, string ownerEmailAddress)
 		{
-			return await Common.GetCosmosDataAsync<T>($"SELECT * FROM c WHERE c.ownerEmailAddress = '{ownerEmailAddress}' AND c.id = '{id}' AND c.discriminator = 'Metadata'", _ReadContainer);
+			return await Common.GetCosmosDataAsync<T>(
+				new QueryDefinition("SELECT * FROM c WHERE c.ownerEmailAddress = @OwnerEmailAddress AND c.id = @Id AND c.discriminator = 'Metadata'")
+					.WithParameter("@OwnerEmailAddress", ownerEmailAddress)
+					.WithParameter("@Id", id),
+				_ReadContainer);
 		}
 
 	}
