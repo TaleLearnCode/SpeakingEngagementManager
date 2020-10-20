@@ -1,4 +1,6 @@
-﻿namespace TaleLearnCode.SpeakingEngagementManager.Domain
+﻿using System;
+
+namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
 	/// <summary>
 	/// Type for representing metadata objects.
@@ -65,6 +67,29 @@
 		{
 			DocumentVersion = documentVersion;
 			Type = metadataType;
+		}
+
+		public static string GetMetadataType(IMetadata metadata)
+		{
+			switch (metadata)
+			{
+				case SessionType sessionType:
+					return MetadataTypes.SessionType;
+				case ShindigType shindigType:
+					return MetadataTypes.ShindigType;
+				case Tag tag:
+					return MetadataTypes.Tag;
+				default:
+					throw new Exception("Invalid metadata type");
+			}
+		}
+
+		public virtual bool IsValid()
+		{
+			if (string.IsNullOrWhiteSpace(OwnerEmailAddress)) throw new Exception("The document must define the OwnerEmailAddress value.");
+			if (string.IsNullOrWhiteSpace(Name)) throw new Exception("The document must define the Name value.");
+			if (GetMetadataType(this) != Type) throw new Exception("The Type value and the document type must match.");
+			return true;
 		}
 
 	}

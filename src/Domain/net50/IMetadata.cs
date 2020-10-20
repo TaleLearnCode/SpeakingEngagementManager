@@ -4,5 +4,6 @@
 	{
 		string Name { get; set; }
 		string Type { get; init; }
+		bool IsValid();
 	}
 }
