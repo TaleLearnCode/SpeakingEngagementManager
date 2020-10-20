@@ -9,6 +9,11 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 
 		static async Task Main()
 		{
+			await MetadataTesting();
+		}
+
+		static async Task DomainTesting()
+		{
 
 			using var domainTesting = new DomainTesting();
 
@@ -22,7 +27,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			await domainTesting.ReadShindigDynamicallyAsync(shindigId);
 
 			Console.WriteLine("Reading the shindig document dynamically generically...");
-			var shindig = await domainTesting.ReadDocumentByIdDistrinclyAsync<Shindig>(shindigId);
+			var shindig = await domainTesting.ReadDocumentByIdDynamicallyAsync<Shindig>(shindigId);
 			Console.WriteLine($"\tDynamic Shindig:{shindig.Name}");
 
 			Console.WriteLine("Reading the shindig documents via a query dynamically, generically...");
@@ -45,6 +50,30 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			Console.WriteLine();
 
 			Console.WriteLine("Done testing");
+
+
+		}
+
+		static async Task MetadataTesting()
+		{
+			using var metadataTesting = new MetadataTesting();
+
+			Console.WriteLine("Creating session type...");
+			SessionType sessionType = await metadataTesting.CreateSessionTypeAsync();
+			Console.WriteLine($"\t{sessionType.Name} is {sessionType.Duration} minutes long");
+
+			Console.WriteLine("Creating shindig type...");
+			ShindigType shindigType = await metadataTesting.CreateShindigTypeAsync();
+			Console.WriteLine($"\t{shindigType.Name}");
+
+			Console.WriteLine("Creating tag...");
+			Tag tag = await metadataTesting.CreateTagAsync();
+			Console.WriteLine($"\t{tag.Name}");
+
+			Console.WriteLine("Reading tag...");
+			Console.WriteLine($"\t{tag.Name}");
+
+
 
 		}
 

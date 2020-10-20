@@ -5,7 +5,7 @@
 	/// </summary>
 	/// <seealso cref="IMetadata" />
 	/// <seealso cref="IPartitionKey" />
-	public abstract class Metadata : IDocument
+	public abstract class Metadata : IMetadata
 	{
 
 		/// <summary>
@@ -22,7 +22,7 @@
 		/// <value>
 		/// A <c>string</c> representing the document discriminator.
 		/// </value>
-		public string Discriminator { get; }
+		public string Discriminator { get => "Metadata"; }
 
 		/// <summary>
 		/// Gets the identifier of the metadata object.
@@ -49,14 +49,22 @@
 		public string Name { get; set; }
 
 		/// <summary>
+		/// Gets or sets the type of the metadata.
+		/// </summary>
+		/// <value>
+		/// A <c>string</c> representing the metadata type.
+		/// </value>
+		public string Type { get; init; }
+
+		/// <summary>
 		/// Initializes a new instance of the <see cref="Metadata"/> class.
 		/// </summary>
-		/// <param name="discriminator">The discriminator for the document.</param>
+		/// <param name="metadataType">The type of metadata represented by the document.</param>
 		/// <param name="documentVersion">The version for the document.</param>
-		protected Metadata(string discriminator, string documentVersion)
+		protected Metadata(string metadataType, string documentVersion)
 		{
 			DocumentVersion = documentVersion;
-			Discriminator = discriminator;
+			Type = metadataType;
 		}
 
 	}
