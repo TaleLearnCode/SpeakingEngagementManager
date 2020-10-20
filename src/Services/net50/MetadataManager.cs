@@ -19,6 +19,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 
 		public async Task<T> CreateMetadataAsync<T>(IMetadata metadata)
 		{
+			metadata.IsValid();  // Will throw an exception if not valid
 			return (await _WriteContainer.CreateItemAsync((T)metadata, new PartitionKey(metadata.OwnerEmailAddress))).Value;
 		}
 
@@ -30,6 +31,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 					.WithParameter("@Id", id),
 				_ReadContainer);
 		}
+
+
 
 	}
 
