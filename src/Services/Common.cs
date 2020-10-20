@@ -1,24 +1,22 @@
 ﻿using Azure;
 using Azure.Cosmos;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Services
 {
-	public static class Common
+
+	internal static class Common
 	{
 
-		public static async Task<T> GetCosmosDataAsync<T>(string query, CosmosContainer cosmosContainer)
+		internal static async Task<T> GetCosmosDataAsync<T>(QueryDefinition query, CosmosContainer cosmosContainer)
 		{
 
-			QueryDefinition queryDefinition = new QueryDefinition(query);
 			List<dynamic> documents = new List<dynamic>();
 
-			await foreach (Response response in cosmosContainer.GetItemQueryStreamIterator(queryDefinition))
+			await foreach (Response response in cosmosContainer.GetItemQueryStreamIterator(query))
 			{
 				var queryStream = await JsonSerializer.DeserializeAsync<QueryStream>(
 					response.ContentStream,
@@ -33,7 +31,6 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 
 		}
 
-
-
 	}
+
 }
