@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 /src/Consumer.EntityFramework.Cosmos/Settings.cs
 /Console/Settings.cs
+/src/TestBed3/Settings.cs
+/src/TestBed5/Settings.cs

@@ -1,4 +1,6 @@
-﻿namespace TaleLearnCode.SpeakingEngagementManager.Domain
+﻿using System.Text.Json.Serialization;
+
+namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
 
 	/// <summary>
@@ -37,6 +39,7 @@
 		/// <value>
 		/// A <see cref="string"/> representing the owner email address.
 		/// </value>
+		[JsonPropertyName("ownerEmailAddress")]
 		string OwnerEmailAddress { get; set; }
 
 	}

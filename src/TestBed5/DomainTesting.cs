@@ -126,7 +126,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 		{
 
 			QueryDefinition queryDefinition = new QueryDefinition($"SELECT * FROM c WHERE c.id = '{id}'");
-			List<dynamic> shindigs = new List<dynamic>();
+			List<dynamic> shindigs = new();
 
 			await foreach (Response response in _ReadContainer.GetItemQueryStreamIterator(queryDefinition))
 			{
@@ -214,8 +214,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 
 		}
 
-
-		public async Task<T> ReadDocumentByIdDistrinclyAsync<T>(string id)
+		public async Task<T> ReadDocumentByIdDynamicallyAsync<T>(string id)
 		{
 
 			QueryDefinition queryDefinition = new QueryDefinition($"SELECT * FROM c WHERE c.id = '{id}'");

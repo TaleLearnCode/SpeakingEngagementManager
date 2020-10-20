@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+		<AssemblyName>TaleLearnCode.SpeakingEngagementManager.Services</AssemblyName>
+		<RootNamespace>TaleLearnCode.SpeakingEngagementManager.Services</RootNamespace>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="*.cs" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+		<Compile Include="netstandard20/*.cs" />
+		<PackageReference Include="System.Text.Json" Version="4.7.2" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+		<Compile Include="net50/*.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Azure.Cosmos" Version="4.0.0-preview3" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Domain\Domain.csproj" />
+	</ItemGroup>
+</Project>
