@@ -1,4 +1,6 @@
-﻿namespace TaleLearnCode.SpeakingEngagementManager.Domain.net50
+﻿using System;
+
+namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
 
 	public abstract class Document : IDocument
@@ -36,12 +38,17 @@
 		/// </value>
 		public string OwnerEmailAddress { get; set; }
 
-		protected Document(string discriminator, string documentVersion, string id, string ownerEmailAddress)
+		protected Document(string discriminator, string documentVersion)
 		{
 			Discriminator = discriminator;
 			DocumentVersion = documentVersion;
-			Id = id;
-			OwnerEmailAddress = ownerEmailAddress;
+		}
+
+		public virtual bool IsValid()
+		{
+			if (string.IsNullOrWhiteSpace(Id)) throw new ArgumentNullException(nameof(Id));
+			if (string.IsNullOrWhiteSpace(OwnerEmailAddress)) throw new ArgumentNullException(nameof(OwnerEmailAddress));
+			return true;
 		}
 
 	}

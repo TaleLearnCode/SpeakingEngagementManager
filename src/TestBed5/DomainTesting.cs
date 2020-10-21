@@ -166,7 +166,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			presentation.Outline.Add("Section Two");
 			presentation.Outline.Add("Section Three");
 
-			await _WriteContainer.CreateItemAsync(presentation);
+			if (presentation.IsValid()) await _WriteContainer.CreateItemAsync(presentation);
 
 			return presentation.Id;
 

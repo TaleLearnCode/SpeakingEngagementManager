@@ -17,4 +17,7 @@
 	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
 		<Compile Include="net50/*.cs" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Constants\" />
+	</ItemGroup>
 </Project>
