@@ -9,19 +9,17 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 	public class MetadataManager
 	{
 
-		private CosmosContainer _WriteContainer;
-		private CosmosContainer _ReadContainer;
+		private CosmosContainer _CosmosContainer;
 
-		public MetadataManager(CosmosContainer writeContainer, CosmosContainer readContainer)
+		public MetadataManager(CosmosContainer cosmosContainer)
 		{
-			_WriteContainer = writeContainer;
-			_ReadContainer = readContainer;
+			_CosmosContainer = cosmosContainer;
 		}
 
 		public async Task<T> CreateMetadataAsync<T>(IMetadata metadata)
 		{
 			metadata.IsValid();  // Will throw an exception if not valid
-			return (await _WriteContainer.CreateItemAsync((T)metadata, new PartitionKey(metadata.OwnerEmailAddress))).Value;
+			return (await _CosmosContainer.CreateItemAsync((T)metadata, new PartitionKey(metadata.OwnerEmailAddress))).Value;
 		}
 
 		public async Task<T> GetMetadataByIdAsync<T>(string id, string ownerEmailAddress)
@@ -30,7 +28,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 				new QueryDefinition($"SELECT * FROM c WHERE c.ownerEmailAddress = @OwnerEmailAddress AND c.id = @Id AND c.discriminator = '{Discriminators.Metadata}'")
 					.WithParameter("@OwnerEmailAddress", ownerEmailAddress)
 					.WithParameter("@Id", id),
-				_ReadContainer);
+				_CosmosContainer);
 		}
 
 		public async Task<List<T>> GetMetadataByTypeAsync<T>(string ownerEmailAddress)
@@ -40,7 +38,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 					.WithParameter("@OwnerEmailAddress", ownerEmailAddress)
 					.WithParameter("@Discriminator", Discriminators.Metadata)
 					.WithParameter("@MetadataType", Metadata.GetMetadataTypeByType(typeof(T))),
-				_ReadContainer);
+				_CosmosContainer);
 		}
 
 	}

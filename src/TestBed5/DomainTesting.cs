@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using TaleLearnCode.SpeakingEngagementManager.Domain;
+using TaleLearnCode.SpeakingEngagementManager.Services;
 
 namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingEngagementManager.TestBed
 {
@@ -14,26 +15,24 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 	public class DomainTesting : IDisposable
 	{
 
-		private CosmosClient _WriteCosmosClient;
-		private CosmosClient _ReadCosmosClient;
-		private CosmosContainer _WriteContainer;
-		private CosmosContainer _ReadContainer;
+		private CosmosClient _CosmosClient;
+		private CosmosContainer _CosmosContainer;
+
+		private CosmosConnection _CosmosConnection;
 
 		public DomainTesting()
 		{
-			InitializeWriteContainer();
-			InitializeReadContainer();
+			InitializeCosmosContainer();
 		}
 
 		public void Dispose()
 		{
-			if (_WriteCosmosClient is not null) _WriteCosmosClient.Dispose();
-			if (_ReadCosmosClient is not null) _ReadCosmosClient.Dispose();
+			if (_CosmosClient is not null) _CosmosClient.Dispose();
 		}
 
-		private void InitializeWriteContainer()
+		private void InitializeCosmosContainer()
 		{
-			_WriteCosmosClient = new CosmosClient(
+			_CosmosClient = new CosmosClient(
 				Settings.CosmosConnectionString,
 				new CosmosClientOptions
 				{
@@ -43,24 +42,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 						IgnoreNullValues = true
 					}
 				});
-			var database = _WriteCosmosClient.GetDatabase(Settings.DatabaseName);
-			_WriteContainer = database.GetContainer(Settings.ContainerName);
-		}
-
-		private void InitializeReadContainer()
-		{
-			_ReadCosmosClient = new CosmosClient(
-				Settings.CosmosConnectionString,
-				new CosmosClientOptions
-				{
-					SerializerOptions = new CosmosSerializationOptions
-					{
-						PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase,
-						IgnoreNullValues = true
-					}
-				});
-			var database = _ReadCosmosClient.GetDatabase(Settings.DatabaseName);
-			_ReadContainer = database.GetContainer(Settings.ContainerName);
+			var database = _CosmosClient.GetDatabase(Settings.DatabaseName);
+			_CosmosContainer = database.GetContainer(Settings.ContainerName);
 		}
 
 		public async Task<string> WriteShindigAsync()
@@ -95,7 +78,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 				DisplayVirtualLocation = false
 			};
 
-			await _WriteContainer.CreateItemAsync(shindig);
+			await _CosmosContainer.CreateItemAsync(shindig);
 
 			return shindig.Id;
 
@@ -107,7 +90,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			QueryDefinition queryDefinition = new QueryDefinition($"SELECT * FROM c WHERE c.id = '{id}'");
 			List<Shindig> shindigs = new List<Shindig>();
 
-			await foreach (Response response in _ReadContainer.GetItemQueryStreamIterator(queryDefinition))
+			await foreach (Response response in _CosmosContainer.GetItemQueryStreamIterator(queryDefinition))
 			{
 				var queryStream = await JsonSerializer.DeserializeAsync<ShindigQueryStream>(
 					response.ContentStream,
@@ -128,7 +111,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			QueryDefinition queryDefinition = new QueryDefinition($"SELECT * FROM c WHERE c.id = '{id}'");
 			List<dynamic> shindigs = new();
 
-			await foreach (Response response in _ReadContainer.GetItemQueryStreamIterator(queryDefinition))
+			await foreach (Response response in _CosmosContainer.GetItemQueryStreamIterator(queryDefinition))
 			{
 				var queryStream = await JsonSerializer.DeserializeAsync<QueryStream>(
 					response.ContentStream,
@@ -166,7 +149,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			presentation.Outline.Add("Section Two");
 			presentation.Outline.Add("Section Three");
 
-			if (presentation.IsValid()) await _WriteContainer.CreateItemAsync(presentation);
+			if (presentation.IsValid()) await _CosmosContainer.CreateItemAsync(presentation);
 
 			return presentation.Id;
 
@@ -178,7 +161,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			QueryDefinition queryDefinition = new QueryDefinition($"SELECT * FROM c WHERE c.id = '{id}'");
 			List<Presentation> presentations = new();
 
-			await foreach (Response response in _ReadContainer.GetItemQueryStreamIterator(queryDefinition))
+			await foreach (Response response in _CosmosContainer.GetItemQueryStreamIterator(queryDefinition))
 			{
 				var queryStream = await JsonSerializer.DeserializeAsync<PresentationQueryStream>(
 					response.ContentStream,
@@ -199,7 +182,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			QueryDefinition queryDefinition = new QueryDefinition($"SELECT * FROM c WHERE c.id = '{id}'");
 			List<dynamic> shindigs = new List<dynamic>();
 
-			await foreach (Response response in _ReadContainer.GetItemQueryStreamIterator(queryDefinition))
+			await foreach (Response response in _CosmosContainer.GetItemQueryStreamIterator(queryDefinition))
 			{
 				var queryStream = await JsonSerializer.DeserializeAsync<QueryStream>(
 					response.ContentStream,
@@ -220,7 +203,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			QueryDefinition queryDefinition = new QueryDefinition($"SELECT * FROM c WHERE c.id = '{id}'");
 			List<dynamic> shindigs = new List<dynamic>();
 
-			await foreach (Response response in _ReadContainer.GetItemQueryStreamIterator(queryDefinition))
+			await foreach (Response response in _CosmosContainer.GetItemQueryStreamIterator(queryDefinition))
 			{
 				var queryStream = await JsonSerializer.DeserializeAsync<QueryStream>(
 					response.ContentStream,
@@ -251,7 +234,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			var queryDefinition = new QueryDefinition(query);
 			List<dynamic> documents = new();
 
-			await foreach (Response response in _ReadContainer.GetItemQueryStreamIterator(queryDefinition))
+			await foreach (Response response in _CosmosContainer.GetItemQueryStreamIterator(queryDefinition))
 			{
 				var queryStream = await JsonSerializer.DeserializeAsync<QueryStream>(
 					response.ContentStream,
