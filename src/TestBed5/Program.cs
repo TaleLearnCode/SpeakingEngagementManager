@@ -9,7 +9,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 
 		static async Task Main()
 		{
-			await MetadataTesting();
+			await DomainTesting();
 		}
 
 		static async Task DomainTesting()

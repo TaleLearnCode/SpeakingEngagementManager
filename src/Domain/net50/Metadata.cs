@@ -84,6 +84,23 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 			}
 		}
 
+		public static string GetMetadataTypeByType(Type metadataType)
+		{
+			switch (metadataType.GetType().ToString())
+			{
+				case MetadataTypes.SessionType:
+					return MetadataTypes.SessionType;
+				case MetadataTypes.ShindigType:
+					return MetadataTypes.ShindigType;
+				case MetadataTypes.Tag:
+					return MetadataTypes.Tag;
+				default:
+					throw new Exception("Invalid metadata type");
+			}
+
+
+		}
+
 		public virtual bool IsValid()
 		{
 			if (string.IsNullOrWhiteSpace(OwnerEmailAddress)) throw new Exception("The document must define the OwnerEmailAddress value.");
