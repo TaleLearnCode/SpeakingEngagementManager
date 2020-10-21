@@ -101,6 +101,14 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// </value>
 		public List<ShindigPresentation> SpeakingEngagements { get; set; } = new();
 
+		/// <summary>
+		/// Gets or sets a value indicating whether the presentation has been retired.
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if the presentation has been retired; otherwise, <c>false</c>.
+		/// </value>
+		public bool IsRetired { get; set; }
+
 		public Presentation() : base("Presentation", "1.0") { }
 
 		public override bool IsValid()

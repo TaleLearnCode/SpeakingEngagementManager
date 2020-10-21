@@ -352,3 +352,4 @@ MigrationBackup/
 /Console/Settings.cs
 /src/TestBed3/Settings.cs
 /src/TestBed5/Settings.cs
+/src/PopulateDatabase/Settings.cs

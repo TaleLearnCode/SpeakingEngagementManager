@@ -11,28 +11,24 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 	public class MetadataTesting : IDisposable
 	{
 
-		private CosmosClient _WriteCosmosClient;
-		private CosmosClient _ReadCosmosClient;
-		private CosmosContainer _WriteContainer;
-		private CosmosContainer _ReadContainer;
+		private CosmosClient _CosmosClient;
+		private CosmosContainer _CosmosContainer;
 		private MetadataManager _MetadataManager;
 
 		public MetadataTesting()
 		{
-			InitializeWriteContainer();
-			InitializeReadContainer();
-			_MetadataManager = new MetadataManager(_WriteContainer, _ReadContainer);
+			InitializeContainer();
+			_MetadataManager = new MetadataManager(_CosmosContainer);
 		}
 
 		public void Dispose()
 		{
-			if (_WriteCosmosClient is not null) _WriteCosmosClient.Dispose();
-			if (_ReadCosmosClient is not null) _ReadCosmosClient.Dispose();
+			if (_CosmosClient is not null) _CosmosClient.Dispose();
 		}
 
-		private void InitializeWriteContainer()
+		private void InitializeContainer()
 		{
-			_WriteCosmosClient = new CosmosClient(
+			_CosmosClient = new CosmosClient(
 				Settings.CosmosConnectionString,
 				new CosmosClientOptions
 				{
@@ -42,24 +38,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 						IgnoreNullValues = true
 					}
 				});
-			var database = _WriteCosmosClient.GetDatabase(Settings.DatabaseName);
-			_WriteContainer = database.GetContainer(Settings.ContainerName);
-		}
-
-		private void InitializeReadContainer()
-		{
-			_ReadCosmosClient = new CosmosClient(
-				Settings.CosmosConnectionString,
-				new CosmosClientOptions
-				{
-					SerializerOptions = new CosmosSerializationOptions
-					{
-						PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase,
-						IgnoreNullValues = true
-					}
-				});
-			var database = _ReadCosmosClient.GetDatabase(Settings.DatabaseName);
-			_ReadContainer = database.GetContainer(Settings.ContainerName);
+			var database = _CosmosClient.GetDatabase(Settings.DatabaseName);
+			_CosmosContainer = database.GetContainer(Settings.ContainerName);
 		}
 
 		public async Task<SessionType> CreateSessionTypeAsync()

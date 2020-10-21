@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
@@ -9,40 +8,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 	/// Represents a shindig (event) within the system.
 	/// </summary>
 	/// <seealso cref="IDocument" />
-	public class Shindig : IDocument
+	public class Shindig : Document
 	{
-
-		/// <summary>
-		/// Gets the version of the document.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the document version.
-		/// </value>
-		public string DocumentVersion { get; } = "1.0";
-
-		/// <summary>
-		/// Gets the discriminator for the document.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the document discriminator.
-		/// </value>
-		public string Discriminator { get; } = nameof(Shindig);
-
-		/// <summary>
-		/// Gets the identifier of the document.
-		/// </summary>
-		/// <value>
-		/// A <see cref="string" /> representing the document identifier.
-		/// </value>
-		public string Id { get; init; } = IDGenerator.Generate();
-
-		/// <summary>
-		/// Gets or sets the email address of the data owner.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the data owner's email address.
-		/// </value>
-		public string OwnerEmailAddress { get; set; }
 
 		/// <summary>
 		/// Gets or sets the name of the shindig (event).
@@ -51,6 +18,10 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// A <c>string</c> representing the name of the shindig.
 		/// </value>
 		public string Name { get; set; }
+
+		public string Description { get; set; }
+
+		public Uri URL { get; set; }
 
 		/// <summary>
 		/// Gets or sets the location of the shindig.
@@ -106,7 +77,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// <value>
 		///   <c>true</c> if the shindig is being held virtually; otherwise, <c>false</c>.
 		/// </value>
-		public bool IsVirtual { get; set; }
+		public bool? IsVirtual { get; set; }
 
 		/// <summary>
 		/// Gets or sets the virtual location for the shindig.
@@ -122,7 +93,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// <value>
 		///   <c>true</c> if the virtual location URL should be shown; otherwise, <c>false</c>.
 		/// </value>
-		public bool DisplayVirtualLocation { get; set; }
+		public bool? DisplayVirtualLocation { get; set; }
 
 		/// <summary>
 		/// Gets or sets the presentation submissions to the shindig.
@@ -139,6 +110,28 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// A <see cref="List{ShindigPresentation}"/> representing the list of scheduled presentations for the shindig.
 		/// </value>
 		public List<ShindigPresentation> Presentations { get; set; } = new();
+
+		public decimal UTCOffset { get; set; }
+
+		public Shindig() : base(Discriminators.Shindig, "1.0") { }
+
+		public override bool IsValid()
+		{
+			if (base.IsValid())
+			{
+				if (string.IsNullOrWhiteSpace(Name)) throw new ArgumentNullException(nameof(Name));
+				if (ShindigType is not null)
+					ShindigType.IsValid();
+			}
+			return true;
+		}
+
+		public void TestMe()
+		{
+
+
+		}
+
 
 	}
 

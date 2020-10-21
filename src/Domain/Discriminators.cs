@@ -8,6 +8,8 @@
 		public const string Metadata = "Metadata";
 		public const string Presentation = "Presentation";
 		public const string Shindig = "Shindig";
+		public const string ShindigSubmission = "ShindigSubmission";
+		public const string ShindigPresentation = "ShindigPresentation";
 	}
 
 }

@@ -9,24 +9,22 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 	public class PresentationManager
 	{
 
-		private CosmosContainer _WriteContainer;
-		private CosmosContainer _ReadContainer;
+		private CosmosContainer _CosmosContainer;
 
-		public PresentationManager(CosmosContainer writeContainer, CosmosContainer readContainer)
+		public PresentationManager(CosmosContainer cosmosContainer)
 		{
-			_WriteContainer = writeContainer;
-			_ReadContainer = readContainer;
+			_CosmosContainer = cosmosContainer;
 		}
 
 		public async Task<Presentation> CreatePresentationAsync(Presentation presentation)
 		{
 			presentation.IsValid(); // Method will throw exception if document is not valid
-			return await Common.SaveDocumentAsync<Presentation>(_WriteContainer, presentation);
+			return await Common.SaveDocumentAsync<Presentation>(_CosmosContainer, presentation);
 		}
 
 		public async Task<Presentation> GetPresentationAsync(string id, string ownerEmailAddress)
 		{
-			return await Common.GetDocumentByIdAsync<Presentation>(Discriminators.Presentation, id, ownerEmailAddress, _ReadContainer);
+			return await Common.GetDocumentByIdAsync<Presentation>(Discriminators.Presentation, id, ownerEmailAddress, _CosmosContainer);
 		}
 
 		public async Task<List<Presentation>> GetPresentationsAsync(string ownerEmailAddress)
@@ -34,7 +32,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 			return await Common.GetDocumentsAsync<Presentation>(
 				new QueryDefinition($"SELECT * FROM c WHERE c.ownerEmailAddress = @OwnerEmailAddress AND c.discriminator = '{Discriminators.Presentation}'")
 					.WithParameter("@OwnerEmailAddress", ownerEmailAddress),
-				_ReadContainer);
+				_CosmosContainer);
 		}
 
 	}

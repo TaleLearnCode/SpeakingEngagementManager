@@ -71,6 +71,11 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 				return default;
 		}
 
+		internal static async Task<T> UpdateDocumentAsync<T>(CosmosContainer cosmosContainer, IDocument document)
+		{
+			return (await cosmosContainer.UpsertItemAsync((T)document, new PartitionKey(document.OwnerEmailAddress))).Value;
+		}
+
 	}
 
 }
