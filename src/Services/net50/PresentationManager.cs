@@ -19,7 +19,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 		public async Task<Presentation> CreatePresentationAsync(Presentation presentation)
 		{
 			presentation.IsValid(); // Method will throw exception if document is not valid
-			return await Common.SaveDocumentAsync<Presentation>(_CosmosContainer, presentation);
+			return await Common.CreateDocumentAsync<Presentation>(_CosmosContainer, presentation);
 		}
 
 		public async Task<Presentation> GetPresentationAsync(string id, string ownerEmailAddress)

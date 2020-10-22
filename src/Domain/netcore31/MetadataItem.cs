@@ -2,7 +2,7 @@
 
 namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
-	public abstract class MetadataItem
+	public abstract class MetadataItem : IMetadataItem
 	{
 
 		public string Id { get; set; }

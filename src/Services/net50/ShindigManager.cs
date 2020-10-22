@@ -19,12 +19,12 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 		public async Task<Shindig> AddShindigAsync(Shindig shindig)
 		{
 			shindig.IsValid(); // Method will throw exception is document is not valid
-			return await Common.SaveDocumentAsync<Shindig>(_CosmosContainer, shindig);
+			return await Common.CreateDocumentAsync<Shindig>(_CosmosContainer, shindig);
 		}
 
 		public async Task<ShindigSubmission> SubmitPresentationToShindigAsync(Shindig shindig, Presentation presentation, SessionType sessionType, DateTime? submissionDate = null, DateTime? notificiationDate = null, bool? accepted = null)
 		{
-			return await Common.SaveDocumentAsync<ShindigSubmission>(
+			return await Common.CreateDocumentAsync<ShindigSubmission>(
 				_CosmosContainer,
 				new ShindigSubmission()
 				{
@@ -43,7 +43,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 
 		public async Task<ShindigPresentation> PresentationScheuledAsync(Shindig shindig, Presentation presentation, SessionType sessionType, DateTime? dateTime = null, string room = null)
 		{
-			return await Common.SaveDocumentAsync<ShindigPresentation>(
+			return await Common.CreateDocumentAsync<ShindigPresentation>(
 				_CosmosContainer,
 				new ShindigPresentation()
 				{
@@ -63,7 +63,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 			shindigSubmission.Accepted = true;
 			await Common.UpdateDocumentAsync<ShindigSubmission>(_CosmosContainer, shindigSubmission);
 
-			return await Common.SaveDocumentAsync<ShindigPresentation>(
+			return await Common.CreateDocumentAsync<ShindigPresentation>(
 				_CosmosContainer,
 				new ShindigPresentation()
 				{

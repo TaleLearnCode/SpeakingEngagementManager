@@ -32,7 +32,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 
 		}
 
-		internal static async Task<T> SaveDocumentAsync<T>(CosmosContainer cosmosContainer, IDocument document)
+		internal static async Task<T> CreateDocumentAsync<T>(CosmosContainer cosmosContainer, IDocument document)
 		{
 			return (await cosmosContainer.CreateItemAsync((T)document, new PartitionKey(document.OwnerEmailAddress))).Value;
 		}

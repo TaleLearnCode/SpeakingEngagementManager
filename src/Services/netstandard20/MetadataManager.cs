@@ -31,6 +31,16 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 				_CosmosContainer);
 		}
 
+		public async Task<T> GetMetadataByNameAsync<T>(string name, string ownerEmailAddress)
+		{
+			return await Common.GetCosmosDataAsync<T>(
+				new QueryDefinition($"SELECT * FROM c WHERE c.ownerEmailAddress = @OwnerEmailAddress AND c.name = @Name AND c.discriminator = @Discriminator")
+					.WithParameter("@OwnerEmailAddress", ownerEmailAddress)
+					.WithParameter("@Name", name)
+					.WithParameter("@Discriminator", Discriminators.Metadata),
+				_CosmosContainer);
+		}
+
 		public async Task<List<T>> GetMetadataByTypeAsync<T>(string ownerEmailAddress)
 		{
 			return await Common.GetDocumentsAsync<T>(
@@ -40,6 +50,32 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 					.WithParameter("@MetadataType", Metadata.GetMetadataTypeByType(typeof(T))),
 				_CosmosContainer);
 		}
+
+		public async Task<TMetadata> GetMetadataByItemName<TMetadataItem, TMetadata>(IMetadataItem metadataItem, string ownerEmailAddress)
+		{
+			var metadata = await GetMetadataByNameAsync<TMetadata>(metadataItem.Name, ownerEmailAddress);
+			if (metadata is null)
+			{
+
+			}
+			return metadata;
+		}
+
+
+		public async Task<Tag> GetTagByName(string name, string ownerEmailAddress)
+		{
+			var tag = await GetMetadataByNameAsync<Tag>(name, ownerEmailAddress);
+			if (tag is null)
+			{
+				tag = await CreateMetadataAsync<Tag>(new Tag()
+				{
+					Name = name,
+					OwnerEmailAddress = ownerEmailAddress
+				});
+			}
+			return tag;
+		}
+
 
 	}
 

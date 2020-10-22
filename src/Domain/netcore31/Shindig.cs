@@ -8,7 +8,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 	/// Represents a shindig (event) within the system.
 	/// </summary>
 	/// <seealso cref="IDocument" />
-	public class Shindig : Document
+	public class Shindig : SEMDocument
 	{
 
 		/// <summary>

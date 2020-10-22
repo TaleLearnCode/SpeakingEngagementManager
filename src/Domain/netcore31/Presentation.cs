@@ -9,7 +9,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 	/// Represents a presentation given by a speaker.
 	/// </summary>
 	/// <seealso cref="IDocument" />
-	public class Presentation : Document
+	public class Presentation : SEMDocument
 	{
 
 		/// <summary>
