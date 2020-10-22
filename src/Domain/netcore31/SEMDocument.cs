@@ -3,7 +3,7 @@
 namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
 
-	public abstract class Document : IDocument
+	public abstract class SEMDocument : IDocument
 	{
 
 		/// <summary>
@@ -38,7 +38,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// </value>
 		public string OwnerEmailAddress { get; set; }
 
-		protected Document(string discriminator, string documentVersion)
+		protected SEMDocument(string discriminator, string documentVersion)
 		{
 			Discriminator = discriminator;
 			DocumentVersion = documentVersion;

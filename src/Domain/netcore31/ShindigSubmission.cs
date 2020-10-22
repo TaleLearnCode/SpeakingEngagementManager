@@ -6,7 +6,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 	/// Represents a <see cref="Presentation"/> submission at a <see cref="Shindig"/>.
 	/// </summary>
 	/// <seealso cref="IDocument" />
-	public class ShindigSubmission : Document
+	public class ShindigSubmission : SEMDocument
 	{
 
 		/// <summary>
