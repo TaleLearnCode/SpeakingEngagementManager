@@ -8,40 +8,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 	/// Represents a presentation at a shindig.
 	/// </summary>
 	/// <seealso cref="IDocument" />
-	public class ShindigPresentation : IDocument
+	public class ShindigPresentation : Document
 	{
-
-		/// <summary>
-		/// Gets the version of the document.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the document version.
-		/// </value>
-		public string DocumentVersion { get; } = "1.0";
-
-		/// <summary>
-		/// Gets the discriminator for the document.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the document discriminator.
-		/// </value>
-		public string Discriminator { get; } = nameof(ShindigPresentation);
-
-		/// <summary>
-		/// Gets the identifier of the document.
-		/// </summary>
-		/// <value>
-		/// A <see cref="string" /> representing the document identifier.
-		/// </value>
-		public string Id { get; set; } = IDGenerator.Generate();
-
-		/// <summary>
-		/// Gets or sets the email address of the data owner.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the data owner's email address.
-		/// </value>
-		public string OwnerEmailAddress { get; set; }
 
 		/// <summary>
 		/// Gets or sets the identifier of the associated <see cref="Presentation"/>.
@@ -107,6 +75,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// </value>
 		/// <remarks>The key represents the name of the download (i.e. slides, demo, etc.).  The value is the URL to the download.</remarks>
 		public Dictionary<string, Uri> Downloads { get; set; } = new Dictionary<string, Uri>();
+
+		public ShindigPresentation() : base(Discriminators.ShindigPresentation, "1.0") { }
 
 	}
 

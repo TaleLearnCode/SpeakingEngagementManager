@@ -6,40 +6,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 	/// Represents a <see cref="Presentation"/> submission at a <see cref="Shindig"/>.
 	/// </summary>
 	/// <seealso cref="IDocument" />
-	public class ShindigSubmission : IDocument
+	public class ShindigSubmission : Document
 	{
-
-		/// <summary>
-		/// Gets the version of the document.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the document version.
-		/// </value>
-		public string DocumentVersion { get; } = "1.0";
-
-		/// <summary>
-		/// Gets the discriminator for the document.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the document discriminator.
-		/// </value>
-		public string Discriminator { get; } = nameof(ShindigPresentation);
-
-		/// <summary>
-		/// Gets the identifier of the document.
-		/// </summary>
-		/// <value>
-		/// A <see cref="string" /> representing the document identifier.
-		/// </value>
-		public string Id { get; set; } = IDGenerator.Generate();
-
-		/// <summary>
-		/// Gets or sets the email address of the data owner.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the data owner's email address.
-		/// </value>
-		public string OwnerEmailAddress { get; set; }
 
 		/// <summary>
 		/// Gets or sets the identifier of the <see cref="Presentation"/> being submitted.
@@ -121,6 +89,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// </value>
 		/// <remarks>A null value indicates that an acceptance indication has not been provided by the shindig.</remarks>
 		public bool? Accepted { get; set; }
+
+		public ShindigSubmission() : base(Discriminators.ShindigSubmission, "1.0") { }
 
 	}
 

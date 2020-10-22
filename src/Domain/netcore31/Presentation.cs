@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
@@ -7,40 +9,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 	/// Represents a presentation given by a speaker.
 	/// </summary>
 	/// <seealso cref="IDocument" />
-	public class Presentation : IDocument
+	public class Presentation : Document
 	{
-
-		/// <summary>
-		/// Gets the version of the document.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the document version.
-		/// </value>
-		public string DocumentVersion { get; } = "1.0";
-
-		/// <summary>
-		/// Gets the discriminator for the document.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the document discriminator.
-		/// </value>
-		public string Discriminator { get; } = nameof(Presentation);
-
-		/// <summary>
-		/// Gets the identifier of the document.
-		/// </summary>
-		/// <value>
-		/// A <see cref="string" /> representing the document identifier.
-		/// </value>
-		public string Id { get; set; } = IDGenerator.Generate();
-
-		/// <summary>
-		/// Gets or sets the email address of the data owner.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the data owner's email address.
-		/// </value>
-		public string OwnerEmailAddress { get; set; }
 
 		/// <summary>
 		/// Gets or sets the name (title) of the presentation.
@@ -95,9 +65,9 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// Gets or sets the tags for the presentation.
 		/// </summary>
 		/// <value>
-		/// A <see cref="List{Tag}"/> representing the tags for the presentation.
+		/// A <see cref="List{TagItem}"/> representing the tags for the presentation.
 		/// </value>
-		public List<Tag> Tags { get; set; } = new List<Tag>();
+		public List<TagItem> Tags { get; set; } = new List<TagItem>();
 
 		/// <summary>
 		/// Gets or sets the session types for the presentation.
@@ -131,6 +101,30 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// </value>
 		public List<ShindigPresentation> SpeakingEngagements { get; set; } = new List<ShindigPresentation>();
 
+		/// <summary>
+		/// Gets or sets a value indicating whether the presentation has been retired.
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if the presentation has been retired; otherwise, <c>false</c>.
+		/// </value>
+		public bool IsRetired { get; set; }
+
+		public Presentation() : base("Presentation", "1.0") { }
+
+		public override bool IsValid()
+		{
+			if (base.IsValid())
+			{
+				if (string.IsNullOrWhiteSpace(Name)) throw new ArgumentNullException(nameof(Name));
+				if (SessionTypes.Any())
+					foreach (var sessionType in SessionTypes)
+						sessionType.IsValid();
+				if (Tags.Any())
+					foreach (var tag in Tags)
+						tag.IsValid();
+			}
+			return true;
+		}
 	}
 
 }

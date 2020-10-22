@@ -9,6 +9,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 	public class Location
 	{
 
+		public string City { get; set; }
+
 		/// <summary>
 		/// Gets the identifier of the associated country.
 		/// </summary>
