@@ -18,6 +18,10 @@
 		<Compile Include="net50/*.cs" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Compile Include="Exceptions\MemberRequiredException.cs" />
+	  <Compile Include="Exceptions\MemberValidationException.cs" />
+	</ItemGroup>
+	<ItemGroup>
 	  <Folder Include="Constants\" />
 	</ItemGroup>
 </Project>

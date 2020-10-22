@@ -109,6 +109,15 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 			return true;
 		}
 
+		public TagItem ToTagItem()
+		{
+			return new TagItem()
+			{
+				Id = this.Id,
+				Name = this.Name
+			};
+		}
+
 	}
 
 }
