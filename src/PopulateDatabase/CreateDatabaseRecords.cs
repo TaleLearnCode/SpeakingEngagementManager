@@ -19,7 +19,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 		private Dictionary<string, Shindig> _Shindigs = new();
 		private Dictionary<string, SessionType> _SessionTypes = new();
 		private Dictionary<string, ShindigType> _ShindigTypes = new();
-		private Dictionary<string, Tag> _Tags = new();
+		private Dictionary<string, TagItem> _Tags = new();
 
 		#region Constants
 
@@ -95,7 +95,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 		private const string Shindig_CodeStock2019 = "Code Stock 2019";
 		private const string Shindig_RevolutionConf2019 = "RevolutionConf 2019";
 		private const string Shindig_SelfConference2019 = "self.conference 2019";
-		private const string Shindig_DotNetSummit2019 = ".NET Summit 2019"
+		private const string Shindig_DotNetSummit2019 = ".NET Summit 2019";
 		private const string Shindig_CincyDeliver = "Cincy Deliver 2019";
 		private const string Shindig_ThatConfernece2019 = "That Conference 2019";
 		private const string Shindig_Agile2019 = "Agile 2019";
@@ -213,23 +213,23 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			Tag tag;
 
 			tag = await _MetadataManager.CreateMetadataAsync<Tag>(new Tag() { Name = Tag_Architecture });
-			_Tags.Add(tag.Name, tag);
+			_Tags.Add(tag.Name, tag.ToTagItem());
 			childProgressBar.Tick();
 
 			tag = await _MetadataManager.CreateMetadataAsync<Tag>(new Tag() { Name = Tag_DotNet });
-			_Tags.Add(tag.Name, tag);
+			_Tags.Add(tag.Name, tag.ToTagItem());
 			childProgressBar.Tick();
 
 			tag = await _MetadataManager.CreateMetadataAsync<Tag>(new Tag() { Name = Tag_DotNetFramework });
-			_Tags.Add(tag.Name, tag);
+			_Tags.Add(tag.Name, tag.ToTagItem());
 			childProgressBar.Tick();
 
 			tag = await _MetadataManager.CreateMetadataAsync<Tag>(new Tag() { Name = Tag_DotNetCore });
-			_Tags.Add(tag.Name, tag);
+			_Tags.Add(tag.Name, tag.ToTagItem());
 			childProgressBar.Tick();
 
 			tag = await _MetadataManager.CreateMetadataAsync<Tag>(new Tag() { Name = Tag_DotNetStandard });
-			_Tags.Add(tag.Name, tag);
+			_Tags.Add(tag.Name, tag.ToTagItem());
 			childProgressBar.Tick();
 
 		}
@@ -297,7 +297,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			await CreateShindigAsync(Shindig_Refactr2019, GetUSLocation("Atlanta", "GA", "Georgia"), new DateTime(2019, 6, 5), new DateTime(2019, 6, 5), _ShindigTypes[ShindigType_Conference], childProgressBar);
 			await CreateShindigAsync(Shindig_RevolutionConf2019, GetUSLocation("Virgina Beach", "VA", "Virginia"), new DateTime(2019, 6, 6), new DateTime(2019, 6, 7), _ShindigTypes[ShindigType_Conference], childProgressBar);
 			await CreateShindigAsync(Shindig_SelfConference2019, GetUSLocation("Detroit", "MI", "Michigan"), new DateTime(2019, 6, 7), new DateTime(2019, 6, 8), _ShindigTypes[ShindigType_Conference], childProgressBar);
-			await CreateShindigAsync(Shindig_DotNetSummit2019, new Location() { City = "Minsk", CountryDivisionCategory = "city", CountryDivisionId = 'BY-HM', CountryDivisionName = 'Horad Minsk', CountryFlag = new Uri("https://countriespoc.blob.core.windows.net/flags/by.svg"), CountryId = "BY", CountryName = "Belarus", RegionCode = "150", RegionName = "Europe", SubregionCode = "151", SubregionName = "Eastern Europe" }, new DateTime(2019, 6, 8), new DateTime(2019, 6, 8), _ShindigTypes[ShindigType_Conference], childProgressBar);
+			await CreateShindigAsync(Shindig_DotNetSummit2019, new Location() { City = "Minsk", CountryDivisionCategory = "city", CountryDivisionId = "BY-HM", CountryDivisionName = "Horad Minsk", CountryFlag = new Uri("https://countriespoc.blob.core.windows.net/flags/by.svg"), CountryId = "BY", CountryName = "Belarus", RegionCode = "150", RegionName = "Europe", SubregionCode = "151", SubregionName = "Eastern Europe" }, new DateTime(2019, 6, 8), new DateTime(2019, 6, 8), _ShindigTypes[ShindigType_Conference], childProgressBar);
 			await CreateShindigAsync(Shindig_NDCOslo2019, new Location() { City = "Oslo", CountryDivisionId = "NO-03", CountryDivisionCategory = "county", CountryDivisionName = "Oslo", CountryFlag = new Uri("https://countriespoc.blob.core.windows.net/flags/no.svg"), CountryId = "NO", CountryName = "Norway", RegionCode = "150", RegionName = "Europe", SubregionCode = "154", SubregionName = "Northern Europe" }, new DateTime(2019, 6, 17), new DateTime(2019, 6, 21), _ShindigTypes[ShindigType_Conference], childProgressBar);
 			//await CreateShindigAsync(Shindig_CincyDeliver
 			//await CreateShindigAsync(Shindig_ThatConfernece2019
@@ -406,7 +406,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 						"Understand the differences between .NET Framework, .NET Core, and .NET Standard",
 						"Understand when to use one Microsoft .NET framework over another"
 					},
-					Tags = new List<Tag>()
+					Tags = new List<TagItem>()
 					{
 						_Tags[Tag_Architecture],
 						_Tags[Tag_DotNet],
@@ -461,7 +461,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 						"How to use .NET Standard effectively to build cross-platform libraries",
 						"Learn key library building concepts such as versioning, strong naming, and binding redirects"
 		},
-					Tags = new List<Tag>()
+					Tags = new List<TagItem>()
 		{
 						_Tags[Tag_Architecture],
 						_Tags[Tag_DotNet],

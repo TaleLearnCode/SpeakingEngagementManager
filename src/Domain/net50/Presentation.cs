@@ -65,9 +65,9 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		/// Gets or sets the tags for the presentation.
 		/// </summary>
 		/// <value>
-		/// A <see cref="List{Tag}"/> representing the tags for the presentation.
+		/// A <see cref="List{TagItem}"/> representing the tags for the presentation.
 		/// </value>
-		public List<Tag> Tags { get; set; } = new();
+		public List<TagItem> Tags { get; set; } = new();
 
 		/// <summary>
 		/// Gets or sets the session types for the presentation.

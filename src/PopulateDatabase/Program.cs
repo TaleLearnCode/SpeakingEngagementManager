@@ -42,13 +42,6 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			Console.WriteLine();
 		}
 
-		private static void WhichMicrosoftFrameworkAmISupposedToUse(CosmosConnection cosmosConnection)
-		{
-			Console.WriteLine();
-			Console.WriteLine("Which Microsoft Framework Am I Supposed to Use?");
-		}
-
-
 
 	}
 
