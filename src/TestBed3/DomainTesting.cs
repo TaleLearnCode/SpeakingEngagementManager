@@ -157,10 +157,10 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			};
 			presentation.LearningObjectives.Add("The first objective");
 			presentation.LearningObjectives.Add("The second objective");
-			presentation.Tags.Add(new Tag() { Name = "Azure", OwnerEmailAddress = "chadgreen@chadgreen.com" });
-			presentation.Tags.Add(new Tag() { Name = ".NET", OwnerEmailAddress = "chadgreen@chadgreen.com" });
-			presentation.Tags.Add(new Tag() { Name = "Cosmos DB", OwnerEmailAddress = "chadgreen@chadgreen.com" });
-			presentation.Tags.Add(new Tag() { Name = "Microsoft", OwnerEmailAddress = "chadgreen@chadgreen.com" });
+			presentation.Tags.Add(new TagItem() { Name = "Azure" });
+			presentation.Tags.Add(new TagItem() { Name = ".NET" });
+			presentation.Tags.Add(new TagItem() { Name = "Cosmos DB" });
+			presentation.Tags.Add(new TagItem() { Name = "Microsoft" });
 			presentation.SessionTypes.Add(new SessionType { Name = "60-Minute Session", Duration = 60, OwnerEmailAddress = "chadgreen@chadgreen.com" });
 			presentation.Outline.Add("Section One");
 			presentation.Outline.Add("Section Two");

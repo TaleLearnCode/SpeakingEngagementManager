@@ -27,14 +27,6 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 		public string StreetAddress { get; set; }
 
 		/// <summary>
-		/// Gets or sets the city where the venue is located.
-		/// </summary>
-		/// <value>
-		/// A <c>string</c> representing the city name.
-		/// </value>
-		public string City { get; set; }
-
-		/// <summary>
 		/// Gets or sets the URL for a map to the venue.
 		/// </summary>
 		/// <value>

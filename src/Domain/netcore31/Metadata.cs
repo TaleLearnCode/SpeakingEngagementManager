@@ -1,11 +1,13 @@
-﻿namespace TaleLearnCode.SpeakingEngagementManager.Domain
+﻿using System;
+
+namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
 	/// <summary>
 	/// Type for representing metadata objects.
 	/// </summary>
 	/// <seealso cref="IMetadata" />
 	/// <seealso cref="IPartitionKey" />
-	public abstract class Metadata : IDocument
+	public abstract class Metadata : IMetadata
 	{
 
 		/// <summary>
@@ -22,7 +24,7 @@
 		/// <value>
 		/// A <c>string</c> representing the document discriminator.
 		/// </value>
-		public string Discriminator { get; }
+		public string Discriminator { get => "Metadata"; }
 
 		/// <summary>
 		/// Gets the identifier of the metadata object.
@@ -49,14 +51,71 @@
 		public string Name { get; set; }
 
 		/// <summary>
+		/// Gets or sets the type of the metadata.
+		/// </summary>
+		/// <value>
+		/// A <c>string</c> representing the metadata type.
+		/// </value>
+		public string Type { get; set; }
+
+		/// <summary>
 		/// Initializes a new instance of the <see cref="Metadata"/> class.
 		/// </summary>
-		/// <param name="discriminator">The discriminator for the document.</param>
+		/// <param name="metadataType">The type of metadata represented by the document.</param>
 		/// <param name="documentVersion">The version for the document.</param>
-		protected Metadata(string discriminator, string documentVersion)
+		protected Metadata(string metadataType, string documentVersion)
 		{
 			DocumentVersion = documentVersion;
-			Discriminator = discriminator;
+			Type = metadataType;
+		}
+
+		public static string GetMetadataType(IMetadata metadata)
+		{
+			switch (metadata)
+			{
+				case SessionType sessionType:
+					return MetadataTypes.SessionType;
+				case ShindigType shindigType:
+					return MetadataTypes.ShindigType;
+				case Tag tag:
+					return MetadataTypes.Tag;
+				default:
+					throw new Exception("Invalid metadata type");
+			}
+		}
+
+		public static string GetMetadataTypeByType(Type metadataType)
+		{
+			switch (metadataType.GetType().ToString())
+			{
+				case MetadataTypes.SessionType:
+					return MetadataTypes.SessionType;
+				case MetadataTypes.ShindigType:
+					return MetadataTypes.ShindigType;
+				case MetadataTypes.Tag:
+					return MetadataTypes.Tag;
+				default:
+					throw new Exception("Invalid metadata type");
+			}
+
+
+		}
+
+		public virtual bool IsValid()
+		{
+			if (string.IsNullOrWhiteSpace(OwnerEmailAddress)) throw new Exception("The document must define the OwnerEmailAddress value.");
+			if (string.IsNullOrWhiteSpace(Name)) throw new Exception("The document must define the Name value.");
+			if (GetMetadataType(this) != Type) throw new Exception("The Type value and the document type must match.");
+			return true;
+		}
+
+		public TagItem ToTagItem()
+		{
+			return new TagItem()
+			{
+				Id = this.Id,
+				Name = this.Name
+			};
 		}
 
 	}

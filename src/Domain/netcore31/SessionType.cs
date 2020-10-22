@@ -1,4 +1,6 @@
-﻿namespace TaleLearnCode.SpeakingEngagementManager.Domain
+﻿using System;
+
+namespace TaleLearnCode.SpeakingEngagementManager.Domain
 {
 
 	/// <summary>
@@ -20,6 +22,13 @@
 		/// Initializes a new instance of the <see cref="SessionType"/> class.
 		/// </summary>
 		public SessionType() : base(nameof(SessionType), "1.0") { }
+
+		public override bool IsValid()
+		{
+			if (base.IsValid())
+				if (Duration <= 0) throw new Exception("The document must define the Duration value.");
+			return true;
+		}
 
 	}
 }
