@@ -8,6 +8,8 @@ using TaleLearnCode.SpeakingEngagementManager.Services;
 namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingEngagementManager.PopulateDatabase
 {
 
+	// TODO: Presentations need a featured/thumbnail image
+
 	public class CreateDatabaseRecords
 	{
 
@@ -388,6 +390,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 		{
 			using var childProgressBar = progressBar.Spawn(1, "Creating the Presentations");
 			await WhichMicrosoftFrameworkAmISupposedToUse(childProgressBar);
+			await BuildingGreatLibrariesWithDotNetStandard(childProgressBar);
 		}
 
 		private async Task WhichMicrosoftFrameworkAmISupposedToUse(ChildProgressBar progressBar)
@@ -437,9 +440,16 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			submissions.Add(Shindig_CodeMash2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_CodeMash2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
 
 			// TODO: Need to handle time zones
-			await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_KCDC2018], new DateTime(2018, 7, 12, 8, 45, 0));
-			await _ShindigManager.PresentationScheuledAsync(_Shindigs[Shindig_LouDotNet0218], presentation, _SessionTypes[SessionType_Session60], new DateTime(2018, 2, 15, 19, 0, 0));
-			await _ShindigManager.PresentationScheuledAsync(_Shindigs[Shindig_Evansville0218], presentation, _SessionTypes[SessionType_Session60], new DateTime(2018, 2, 15, 11, 30, 0));
+			ShindigPresentation shindigPresentation;
+
+			shindigPresentation = await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_KCDC2018], new DateTime(2018, 7, 12, 8, 45, 0));
+			await _PresentationManager.AddDownloadToShindigPresentation(shindigPresentation.PresentationId, shindigPresentation.PresentationId, shindigPresentation.OwnerEmailAddress, "Slides", new Uri("https://chadgreen.blob.core.windows.net/slides/Which%20Microsoft%20Framework%20Am%20I%20Supposed%20to%20Use%20-%20KCDC.pdf"));
+
+			shindigPresentation = await _ShindigManager.PresentationScheuledAsync(_Shindigs[Shindig_LouDotNet0218], presentation, _SessionTypes[SessionType_Session60], new DateTime(2018, 2, 15, 19, 0, 0));
+			await _PresentationManager.AddDownloadToShindigPresentation(shindigPresentation.PresentationId, shindigPresentation.PresentationId, shindigPresentation.OwnerEmailAddress, "Slides", new Uri("https://chadgreen.blob.core.windows.net/slides/Which%20Microsoft%20Framework%20Am%20I%20Supposed%20to%20Use%20-%20Louisville%20NET%20Meetup.pdf"));
+
+			shindigPresentation = await _ShindigManager.PresentationScheuledAsync(_Shindigs[Shindig_Evansville0218], presentation, _SessionTypes[SessionType_Session60], new DateTime(2018, 2, 15, 11, 30, 0));
+			await _PresentationManager.AddDownloadToShindigPresentation(shindigPresentation.PresentationId, shindigPresentation.PresentationId, shindigPresentation.OwnerEmailAddress, "Slides", new Uri("https://chadgreen.blob.core.windows.net/slides/Which%20Microsoft%20Framework%20Am%20I%20Supposed%20to%20Use%20-%20Evansville%20Technology%20Group.pdf"));
 
 			progressBar.Tick();
 
@@ -478,24 +488,53 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 				});
 
 			Dictionary<string, ShindigSubmission> submissions = new();
-			submissions.Add(Shindig_CodeStock2018, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_CodeStock2018], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_CodeStock2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_CodeStock2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_NebraskaCode2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_NebraskaCode2019], presentation, _SessionTypes[SessionType_Session60], accepted: true));
+			submissions.Add(Shindig_IndyCode2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IndyCode2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_PrairieCode2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_PrairieCode2019], presentation, _SessionTypes[SessionType_Session60], accepted: true));
+			submissions.Add(Shindig_Connectaha2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Connectaha2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_VSLiveNewOrleans2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_VSLiveNewOrleans2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_VSLiveBoston2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_VSLiveBoston2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_VSLiveRedmond2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_VSLiveRedmond2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DotNetSouth2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DotNetSouth2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_Refactr2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Refactr2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_NDCMinnesota2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_NDCMinnesota2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_VSLiveSanDiego2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_VSLiveSanDiego2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_VSLiveChicago2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_VSLiveChicago2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_StirTrek2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_StirTrek2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_NDCOslo2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_NDCOslo2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_BeerCityCode2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_BeerCityCode2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_PrairieDevCon2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_PrairieDevCon2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_MusicCityTech2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_MusicCityTech2019], presentation, _SessionTypes[SessionType_Session60], accepted: true));
+			submissions.Add(Shindig_ScenicCitySummit2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_ScenicCitySummit2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_Live360Orlando2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Live360Orlando2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_Oredev2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Oredev2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_ThunderPlains2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_ThunderPlains2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DevUp2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevUp2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DogFoodCon2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DogFoodCon2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_CreamCityCode2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_CreamCityCode2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DevSpace2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevSpace2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_LittleRockTechFest2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_LittleRockTechFest2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_PrairieDevConRegina2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_PrairieDevConRegina2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_TechCon2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_TechCon2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_UpdateConference2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_UpdateConference2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_AtlantaCodeCamp2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_AtlantaCodeCamp2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DevDay2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevDay2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_Swetug2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Swetug2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_SDD2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_SDD2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_Connectaha2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Connectaha2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_Refactr2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Refactr2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
 
-			submissions.Add(Shindig_StirTrek2018, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_StirTrek2018], presentation, _SessionTypes[SessionType_Session60], accepted: false));
-			submissions.Add(Shindig_MusicCityTech2018, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_MusicCityTech2018], presentation, _SessionTypes[SessionType_Session60], accepted: false));
-			submissions.Add(Shindig_PittsburghTechFest2018, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_PittsburghTechFest2018], presentation, _SessionTypes[SessionType_Session60], accepted: false));
-			submissions.Add(Shindig_BeerCityCode2018, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_BeerCityCode2018], presentation, _SessionTypes[SessionType_Session60], accepted: false));
-			submissions.Add(Shindig_KCDC2018, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_KCDC2018], presentation, _SessionTypes[SessionType_Session60], accepted: false));
-			submissions.Add(Shindig_ThatConference2018, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_ThatConference2018], presentation, _SessionTypes[SessionType_Session60], accepted: false));
-			submissions.Add(Shindig_CoderCruise2018, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_CoderCruise2018], presentation, _SessionTypes[SessionType_Session60], accepted: false));
-			submissions.Add(Shindig_TechBash2018, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_TechBash2018], presentation, _SessionTypes[SessionType_Session60], accepted: false));
-			submissions.Add(Shindig_DogFoodCon2018, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DogFoodCon2018], presentation, _SessionTypes[SessionType_Session60], accepted: false));
-			submissions.Add(Shindig_DevSpace2018, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevSpace2018], presentation, _SessionTypes[SessionType_Session60], accepted: false));
-			submissions.Add(Shindig_CodeMash2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_CodeMash2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			ShindigPresentation shindigPresentation;
 
-			// TODO: Need to handle time zones
-			await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_KCDC2018], new DateTime(2018, 7, 12, 8, 45, 0));
-			await _ShindigManager.PresentationScheuledAsync(_Shindigs[Shindig_LouDotNet0218], presentation, _SessionTypes[SessionType_Session60], new DateTime(2018, 2, 15, 19, 0, 0));
-			await _ShindigManager.PresentationScheuledAsync(_Shindigs[Shindig_Evansville0218], presentation, _SessionTypes[SessionType_Session60], new DateTime(2018, 2, 15, 11, 30, 0));
+			shindigPresentation = await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_PrairieCode2019], new DateTime(2019, 9, 13, 13, 15, 0), "Iowa D");
+			await _PresentationManager.AddDownloadToShindigPresentation(shindigPresentation.PresentationId, shindigPresentation.ShindigId, shindigPresentation.OwnerEmailAddress, "Slides", new Uri("https://chadgreen.blob.core.windows.net/slides/Building%20Great%20Libraries%20with%20.NET%20Standard%20-%20Prairie.Code().pdf"));
+
+			shindigPresentation = await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_MusicCityTech2019], new DateTime(2019, 9, 7, 9, 0, 0), "178");
+			await _PresentationManager.AddDownloadToShindigPresentation(shindigPresentation.PresentationId, shindigPresentation.ShindigId, shindigPresentation.OwnerEmailAddress, "Slides", new Uri("https://chadgreen.blob.core.windows.net/slides/Building%20Great%20Libraries%20with%20.NET%20Standard%20-%20Nebraska.Code.pdf"));
+
+			shindigPresentation = await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_NebraskaCode2019], new DateTime(2019, 8, 16, 15, 15, 0), "Osborne");
+			await _PresentationManager.AddDownloadToShindigPresentation(shindigPresentation.PresentationId, shindigPresentation.ShindigId, shindigPresentation.OwnerEmailAddress, "Slides", new Uri("https://chadgreen.blob.core.windows.net/slides/Building%20Great%20Libraries%20with%20.NET%20Standard%20-%20Nebraska.Code.pdf"));
 
 			progressBar.Tick();
 
