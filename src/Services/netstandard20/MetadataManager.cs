@@ -31,23 +31,24 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 				_CosmosContainer);
 		}
 
-		public async Task<T> GetMetadataByNameAsync<T>(string name, string ownerEmailAddress)
+		public Task<T> GetMetadataByNameAsync<T>(string name, string ownerEmailAddress)
 		{
-			return await Common.GetCosmosDataAsync<T>(
-				new QueryDefinition($"SELECT * FROM c WHERE c.ownerEmailAddress = @OwnerEmailAddress AND c.name = @Name AND c.discriminator = @Discriminator")
+			return Common.GetCosmosDataAsync<T>(
+				new QueryDefinition($"SELECT * FROM c WHERE c.ownerEmailAddress = @OwnerEmailAddress AND c.name = @Name AND c.discriminator = @Discriminator AND c.type = @MetadataType")
 					.WithParameter("@OwnerEmailAddress", ownerEmailAddress)
 					.WithParameter("@Name", name)
-					.WithParameter("@Discriminator", Discriminators.Metadata),
+					.WithParameter("@Discriminator", Discriminators.Metadata)
+					.WithParameter("@MetadataType", Metadata.GetMetadataTypeNameByType(typeof(T))),
 				_CosmosContainer);
 		}
 
 		public async Task<List<T>> GetMetadataByTypeAsync<T>(string ownerEmailAddress)
 		{
 			return await Common.GetDocumentsAsync<T>(
-				new QueryDefinition("SELECT * FROM c WHERE c.ownerEmailAddress = @OwnerEmailAddress AND c.discriminator = @Discriminator")
+				new QueryDefinition("SELECT * FROM c WHERE c.ownerEmailAddress = @OwnerEmailAddress AND c.discriminator = @Discriminator AND c.type = @MetadataType")
 					.WithParameter("@OwnerEmailAddress", ownerEmailAddress)
 					.WithParameter("@Discriminator", Discriminators.Metadata)
-					.WithParameter("@MetadataType", Metadata.GetMetadataTypeByType(typeof(T))),
+					.WithParameter("@MetadataType", Metadata.GetMetadataTypeNameByType(typeof(T))),
 				_CosmosContainer);
 		}
 
@@ -74,6 +75,26 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 				});
 			}
 			return tag;
+		}
+
+		private Task<T> CreateMetadataFromMetadataItemAsync<T>(IMetadataItem metadataItem) where T : IMetadata, new()
+		{
+			var newMetadata = new T();
+			foreach (var propertyInfo in metadataItem.GetType().GetProperties())
+				if (propertyInfo.CanRead &&
+						newMetadata.GetType().GetProperty(propertyInfo.Name).CanWrite &&
+						newMetadata.GetType().GetProperty(propertyInfo.Name).GetValue(newMetadata) == null)
+					newMetadata.GetType().GetProperty(propertyInfo.Name).SetValue(newMetadata, propertyInfo.GetValue(metadataItem));
+
+			return CreateMetadataAsync<T>(newMetadata);
+		}
+
+		public async Task<T> CreateMetadataIfNonexistant<T>(IMetadataItem metadataItem) where T : IMetadata, new()
+		{
+			var metadata = await GetMetadataByNameAsync<T>(metadataItem.Name, metadataItem.OwnerEmailAddress);
+			if (metadata is null)
+				metadata = await CreateMetadataFromMetadataItemAsync<T>(metadataItem);
+			return metadata;
 		}
 
 

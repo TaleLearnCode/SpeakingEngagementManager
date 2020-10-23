@@ -53,7 +53,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ChangeFeedMonitor
 
 					foreach (var tagItem in presentation.Tags.FindAll(t => t.Id is null))
 					{
-						var tag = await _MetadataManager.GetTagByName(tagItem.Name, presentation.OwnerEmailAddress);
+						var tag = await _MetadataManager.CreateMetadataIfNonexistant<Tag>(tagItem);
 						tagItem.Id = tag.Id;
 						documentUpdated = true;
 					}

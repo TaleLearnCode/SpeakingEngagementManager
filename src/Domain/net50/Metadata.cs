@@ -84,9 +84,9 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 			}
 		}
 
-		public static string GetMetadataTypeByType(Type metadataType)
+		public static string GetMetadataTypeNameByType(Type metadataType)
 		{
-			switch (metadataType.GetType().ToString())
+			switch (metadataType.Name)
 			{
 				case MetadataTypes.SessionType:
 					return MetadataTypes.SessionType;
@@ -97,8 +97,6 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 				default:
 					throw new Exception("Invalid metadata type");
 			}
-
-
 		}
 
 		public virtual bool IsValid()
