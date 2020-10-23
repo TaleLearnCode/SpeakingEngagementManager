@@ -11,7 +11,7 @@
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Tag"/> class.
 		/// </summary>
-		public Tag() : base(nameof(Tag), "1.0") { }
+		public Tag() : base(MetadataTypes.Tag, "1.0") { }
 
 	}
 
