@@ -59,16 +59,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 
 		internal static async Task<T> GetDocumentByIdAsync<T>(string discriminator, string id, string ownerEmailAddress, CosmosContainer cosmosContainer)
 		{
-			var queryResults = await GetDocumentsAsync<T>(
-				new QueryDefinition("SELECT * FROM c WHERE c.ownerEmailAddress = @OwnerEmailAddress AND c.id = @Id AND c.discriminator = @Discriminator")
-					.WithParameter("@OwnerEmailAddress", ownerEmailAddress)
-					.WithParameter("@Id", id)
-					.WithParameter("@Discriminator", discriminator),
-				cosmosContainer);
-			if (queryResults.Any())
-				return queryResults[0];
-			else
-				return default;
+			return await cosmosContainer.ReadItemAsync<T>(id, new PartitionKey(ownerEmailAddress));
 		}
 
 		internal static async Task<T> UpdateDocumentAsync<T>(CosmosContainer cosmosContainer, IDocument document)

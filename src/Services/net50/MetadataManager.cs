@@ -97,6 +97,19 @@ namespace TaleLearnCode.SpeakingEngagementManager.Services
 			return metadata;
 		}
 
+		public async Task<List<string>> GetPresentationWithMetadataAsync(string type, string metadataId)
+		{
+			var presentationIds = new List<string>();
+			//var queryDefinition = new QueryDefinition($"SELECT presentations.Id JOIN {type} IN presentations.{type} WHERE {type}.id = @MetadataId").WithParameter("@MetadataId", metadataId);
+			var sql = "SELECT presentations.Id JOIN @Type IN presentations.@Type WHERE @Type.id = @MetadataId";
+			var queryDefinition = new QueryDefinition(sql)
+				.WithParameter("@Type", type)
+				.WithParameter("@MetadataId", metadataId);
+			await foreach (QueryId queryId in _CosmosContainer.GetItemQueryIterator<QueryId>(queryDefinition))
+				presentationIds.Add(queryId.Id);
+			return presentationIds;
+		}
+
 
 	}
 

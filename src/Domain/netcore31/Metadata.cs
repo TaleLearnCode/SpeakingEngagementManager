@@ -99,7 +99,6 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 			}
 		}
 
-
 		public virtual bool IsValid()
 		{
 			if (string.IsNullOrWhiteSpace(OwnerEmailAddress)) throw new Exception("The document must define the OwnerEmailAddress value.");
@@ -108,6 +107,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.Domain
 			return true;
 		}
 
+		// TODO: Move this
 		public TagItem ToTagItem()
 		{
 			return new TagItem()
