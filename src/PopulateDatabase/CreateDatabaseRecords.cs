@@ -11,6 +11,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 	// TODO: Presentations need a featured/thumbnail image
 	// TODO: Canceled shindigs
 	// TODO: Co-Speakers
+	// TODO: Recordings
 
 	public class CreateDatabaseRecords
 	{
@@ -58,6 +59,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 		private const string Tag_EventHubs = "Event Hubs";
 		private const string Tag_GraphDatabases = "Graph Databases";
 		private const string Tag_Leadership = "Leadership";
+		private const string Tag_NoSQL = "No SQL";
 		private const string Tag_Process = "Process";
 		private const string Tag_ProjectManagement = "Project Management";
 		private const string Tag_Serverless = "Serverless";
@@ -215,6 +217,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 		private const string Shindig_GraniteStateCC2020 = "Granite State Code Camp 2020";
 		private const string Shindig_TechBash2020 = "TechBash 2020";
 		private const string Shindig_DallasAustinAzure1220 = "Dallas & Austin Azure Meetup";
+		private const string Shindig_NDCOslo2020 = "NDC Oslo 2020";
+		private const string Shindig_TDevConf2020 = "TDevConf 2020";
 
 		#endregion
 
@@ -342,6 +346,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			await CreateTagAsync(Tag_EventHubs, childProgressBar);
 			await CreateTagAsync(Tag_GraphDatabases, childProgressBar);
 			await CreateTagAsync(Tag_Leadership, childProgressBar);
+			await CreateTagAsync(Tag_NoSQL, childProgressBar);
 			await CreateTagAsync(Tag_Process, childProgressBar);
 			await CreateTagAsync(Tag_ProjectManagement, childProgressBar);
 			await CreateTagAsync(Tag_Serverless, childProgressBar);
@@ -546,6 +551,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			await CreateShindigAsync(Shindig_GraniteStateCC2020, GetUSLocation("Manchester", "NH", "New Hampshire"), new DateTime(2020, 11, 14), new DateTime(2020, 11, 14), _ShindigTypes[ShindigType_CodeCamp], childProgressBar);
 			await CreateShindigAsync(Shindig_TechBash2020, GetUSLocation("Pocono Manor", "PA", "Pennsylvania"), new DateTime(2020, 10, 13), new DateTime(2020, 10, 16), _ShindigTypes[ShindigType_RegionalConference], childProgressBar);
 			await CreateShindigAsync(Shindig_DallasAustinAzure1220, GetUSLocation("Dallas", "TX", "Texas"), new DateTime(2020, 12, 15), new DateTime(2020, 12, 15), _ShindigTypes[ShindigType_UserGroup], childProgressBar);
+			await CreateShindigAsync(Shindig_NDCOslo2020, new Location() { City = "Oslo", CountryDivisionId = "NO-03", CountryDivisionCategory = "county", CountryDivisionName = "Oslo", CountryFlag = new Uri("https://countriespoc.blob.core.windows.net/flags/no.svg"), CountryId = "NO", CountryName = "Norway", RegionCode = "150", RegionName = "Europe", SubregionCode = "154", SubregionName = "Northern Europe" }, new DateTime(2020, 6, 8), new DateTime(2020, 6, 12), _ShindigTypes[ShindigType_SecondTierConference], childProgressBar);
+			await CreateShindigAsync(Shindig_TDevConf2020, GetUSLocation("Memphis", "TN", "Tennessee"), new DateTime(2020, 10, 3), new DateTime(2020, 10, 3), _ShindigTypes[ShindigType_RegionalConference], childProgressBar);
 		}
 
 		private async Task CreateShindigAsync(string name, Location location, DateTime startDate, DateTime endDate, ShindigType shindigType, ChildProgressBar progressBar)
@@ -612,6 +619,8 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			await DevelopACompleteServerlessSolutionInADay(childProgressBar);
 			await GettingGremlinsToImporveYourData(childProgressBar);
 			await EventDrivenArchitectureInTheCloud(childProgressBar);
+			await BuildingHyperScaledEventProcessingSolutionsInAzure(childProgressBar);
+			await TheHitchhikersGuideToTheCosmos(childProgressBar);
 		}
 
 		private async Task WhichMicrosoftFrameworkAmISupposedToUse(ChildProgressBar progressBar)
@@ -1010,7 +1019,7 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 			shindigPresentation = await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_BeerCityCode2019], new DateTime(2019, 6, 1, 14, 0, 0));
 			await _PresentationManager.AddDownloadToShindigPresentation(shindigPresentation.PresentationId, shindigPresentation.ShindigId, shindigPresentation.OwnerEmailAddress, "Slides", new Uri("https://chadgreen.blob.core.windows.net/slides/Secrets%20of%20Conflict%20Resolution%20-%20Beer%20City%20Code.pdf"));
 
-			shindigPresentation = await _ShindigManager.PresentationScheuledAsync(_Shindigs[Shindig_TechLadies0619], presentation, _SessionTypes[SessionType_Session60], new DateTime(2019, 6, 6, 18, 00, 0));
+			await _ShindigManager.PresentationScheuledAsync(_Shindigs[Shindig_TechLadies0619], presentation, _SessionTypes[SessionType_Session60], new DateTime(2019, 6, 6, 18, 00, 0));
 
 			progressBar.Tick();
 
@@ -2139,6 +2148,252 @@ namespace TaleLearnCode.SpeakingEngagementManager.ConsoleTaleLearnCode.SpeakingE
 
 		}
 
+		private async Task BuildingHyperScaledEventProcessingSolutionsInAzure(ChildProgressBar progressBar)
+		{
+
+			// TODO: Add AKA (Getting Started with Azure Event Hubs)
+
+			var presentation = await _PresentationManager.CreatePresentationAsync(
+				new Presentation()
+				{
+					Name = "Building Hyper-Scaled Event-Processing Solutions in Azure",
+					Abstract = "At the core of building hyper-scaled event-processing solutions in Azure is knowledge of how to use Azure Event Hubs. In this session, you will learn how to create an event-processing pipeline in Azure. First, we will discover how to set up an Azure Event Hub and how to send and receive events in a .NET application. Then you will see how build a real-time dashboard using Stream Analytics and Power BI. Finally, we will cover how to archive the events for long-time storage and how to trigger Azure Functions and Azure Logic Apps from the events within an Event Hub.",
+					ShortAbstract = "At the core of building hyper-scaled event-processing solutions in Azure is knowledge of how to use Azure Event Hubs. In this session, you will learn how to create an event-processing pipeline in Azure.",
+					ElevatorPitch = "Learn how to create a loosely coupled architecture for your business that has the domain at the core.",
+					WhyAttend = "Over the last couple of years, microservices has been the answer to how to solve all your problems.  The primary goal of microservices is to break up a system into independent services focused on a particular business area.  But many times, we still see dependency between these “independent” services which causes numerous issues.  Event-driven architecture goes several steps further in order to truly get decoupled, encapsulated services which are highly responsive, scalable/distributed, and independent. In this session, you will learn about event-driven architecture and how to implement it within the Microsoft Azure stack.",
+					LearningObjectives = new List<string>()
+					{
+						"Learn how to set up an Azure Event Hub and send and receive events in a .NET application",
+						"Learn how to build a real-time dashboard using Stream Analytics and Power BI using data ingested by Azure Event Hubs",
+						"Learn how archive events ingested by Azure Event Hubs for long-time storage",
+						"Learn how to trigger Azure Functions and Azure Logic Apps from the events within an Event Hub"
+					},
+					Tags = new List<TagItem>()
+					{
+						_Tags[Tag_Architecture],
+						_Tags[Tag_Azure],
+						_Tags[Tag_AzureFunctions],
+						_Tags[Tag_Cloud],
+						_Tags[Tag_EventDrivenArchitecture],
+						_Tags[Tag_EventHubs]
+					},
+					SessionTypes = new List<SessionType>()
+					{
+						_SessionTypes[SessionType_Session45],
+						_SessionTypes[SessionType_Session60],
+						_SessionTypes[SessionType_Session75]
+					},
+					Outline = new List<string>()
+					{
+						"Introduction to Event Hubs",
+						"Demo: Setup Azure Event Hubs",
+						"Demo: Send and Receive Events in .NET Core",
+						"Demo: Send Event from an Azure Function",
+						"Demo: Trigger Azure Function",
+						"Demo: Trigger Azure Logic App",
+						"Demo: Archive Events for Long - Term Storage",
+						"Demo: Real - Time Dashboard",
+						"Frequently Asked Questions",
+						"Summary"
+					}
+				});
+
+			Dictionary<string, ShindigSubmission> submissions = new();
+			submissions.Add(Shindig_DevConf2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevConf2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DevUp2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevUp2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DogFoodCon2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DogFoodCon2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_CreamCityCode2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_CreamCityCode2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DevSpace2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevSpace2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_TechBash2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_TechBash2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_PrairieDevCon2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_PrairieDevCon2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_TechCon2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_TechCon2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_UpdateConference2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_UpdateConference2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_AtlantaCodeCamp2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_AtlantaCodeCamp2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteBeijing2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteBeijing2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DevDay2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevDay2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_VSLiveLasVegas2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_VSLiveLasVegas2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_VSLiveAustin2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_VSLiveAustin2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_CodeMash2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_CodeMash2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteToronto2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteToronto2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteLondon2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteLondon2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteMilan2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteMilan2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteJohannesburg2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteJohannesburg2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteWashingtonDC2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteWashingtonDC2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteDubai2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteDubai2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteSydney2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteSydney2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteTaipei2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteTaipei2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteSingapore2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteSingapore2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgnitePrague2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgnitePrague2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteCopenhagen2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteCopenhagen2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteZürich2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteZürich2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteAmsterdam2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteAmsterdam2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteHongKong2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteHongKong2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteMadrid2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteMadrid2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteMumbai2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteMumbai2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteBangalore2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteBangalore2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteChicago2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteChicago2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteTelAviv2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteTelAviv2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteBerlin2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteBerlin2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteStockholm2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteStockholm2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_SDD2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_SDD2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DevConf2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevConf2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_Connectaha2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Connectaha2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_Refactr2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Refactr2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_NDCLondon2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_NDCLondon2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_Swetug2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Swetug2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_MicroCPH2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_MicroCPH2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DevoxxUK2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevoxxUK2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_t3chfest2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_t3chfest2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_CircleCityCom2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_CircleCityCom2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_OrlandoCodeCamp2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_OrlandoCodeCamp2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_SouthFloridaCodeCamp2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_SouthFloridaCodeCamp2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IndyCode2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IndyCode2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_NDCPorto2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_NDCPorto2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_NDCOslo2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_NDCOslo2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_KCDC2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_KCDC2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_BostonCodeCamp2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_BostonCodeCamp2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DotNetDeveloperConference2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DotNetDeveloperConference2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_EuropeanCloudConference2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_EuropeanCloudConference2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+
+			ShindigPresentation shindigPresentation;
+
+			shindigPresentation = await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_DevUp2019], new DateTime(2019, 10, 16, 10, 30, 0), "Discovery D");
+			await _PresentationManager.AddDownloadToShindigPresentation(shindigPresentation.PresentationId, shindigPresentation.ShindigId, shindigPresentation.OwnerEmailAddress, "Slides", new Uri("https://chadgreen.blob.core.windows.net/slides/Getting%20Started%20with%20Azure%20Event%20Hubs%20-%20DevUp.pdf"));
+
+			progressBar.Tick();
+
+		}
+
+		private async Task TheHitchhikersGuideToTheCosmos(ChildProgressBar progressBar)
+		{
+
+			var presentation = await _PresentationManager.CreatePresentationAsync(
+				new Presentation()
+				{
+					Name = "The Hitchhiker's Guide to the Cosmos",
+					Abstract = "Today’s applications are required to be highly responsible and always online. Cosmos DB was built from the ground up to provide a globally distributed, multi-model database service that enables you to elastically and independently scale throughput and storage across any number of Azure regions worldwide. Because of its ARS (atoms, records, and sequences) design, Azure Cosmos DB accessing data via SQL, MongoDB, Table, Gremlin, and Cassandra APIs. All of this with transparent multi-master replication, high availability at 99.999%, and guarantees of less than 10-ms latencies both reads and (indexed) writes.\nIn this session, you will learn what you can do with Cosmos DB, the benefits of each of these data models, and how to use everything Cosmos DB has to offer to make your applications rock solid. Come find out when and how to implement Cosmos DB and which options you should use based upon your needs.",
+					ShortAbstract = "In this session, you will learn what you can do with Cosmos DB, the benefits of each of these data models, and how to use everything Cosmos DB has to offer to make your applications rock solid. Come find out when and how to implement Cosmos DB and which options you should use based upon your needs.",
+					ElevatorPitch = "Cosmos DB provides several data models to store vast amounts of data; learn which is right for you.",
+					WhyAttend = "You probably have heard about Cosmos DB, but are not sure what exactly it is or how it could help you develop better software solutions.  Come hear about Cosmos DB, understand how to get started, and most importantly, understand the different data APIs Cosmos DB supports in order to model your data the best way for your application needs.",
+					LearningObjectives = new List<string>()
+					{
+						"Learn about the different Azure Cosmos DB data models",
+						"Learn how to use the benefits of Azure Cosmos DB to build the best data solution",
+						"Learn about some of the common Cosmos DB use cases"
+					},
+					Tags = new List<TagItem>()
+					{
+						_Tags[Tag_Architecture],
+						_Tags[Tag_Azure],
+						_Tags[Tag_Cloud],
+						_Tags[Tag_CosmosDB],
+						_Tags[Tag_Data],
+						_Tags[Tag_Database],
+						_Tags[Tag_NoSQL]
+					},
+					SessionTypes = new List<SessionType>()
+					{
+						_SessionTypes[SessionType_Session45],
+						_SessionTypes[SessionType_Session60],
+						_SessionTypes[SessionType_Session75]
+					},
+					Outline = new List<string>()
+					{
+						"What is Cosmos DB",
+						"Cosmos Use Cases",
+						"Integrations",
+						"Navigating the 5 API Models",
+						"Call to Action"
+					}
+				});
+
+			Dictionary<string, ShindigSubmission> submissions = new();
+			submissions.Add(Shindig_DevConf2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevConf2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DevUp2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevUp2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DogFoodCon2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DogFoodCon2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_CreamCityCode2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_CreamCityCode2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DevSpace2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevSpace2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_LittleRockTechFest2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_LittleRockTechFest2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_TechBash2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_TechBash2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_PrairieDevCon2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_PrairieDevCon2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_TechCon2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_TechCon2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_UpdateConference2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_UpdateConference2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_AtlantaCodeCamp2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_AtlantaCodeCamp2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteBeijing2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteBeijing2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DevDay2019, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevDay2019], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_VSLiveLasVegas2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_VSLiveLasVegas2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_VSLiveAustin2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_VSLiveAustin2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteToronto2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteToronto2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteLondon2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteLondon2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteMilan2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteMilan2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteJohannesburg2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteJohannesburg2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteWashingtonDC2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteWashingtonDC2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteDubai2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteDubai2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteSydney2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteSydney2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteTaipei2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteTaipei2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteSingapore2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteSingapore2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgnitePrague2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgnitePrague2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteCopenhagen2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteCopenhagen2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteZürich2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteZürich2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteAmsterdam2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteAmsterdam2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteHongKong2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteHongKong2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteMadrid2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteMadrid2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteMumbai2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteMumbai2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteBangalore2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteBangalore2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteChicago2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteChicago2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteTelAviv2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteTelAviv2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteBerlin2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteBerlin2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IgniteStockholm2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IgniteStockholm2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_SDD2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_SDD2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DevConf2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevConf2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_Connectaha2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Connectaha2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_Refactr2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Refactr2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_Swetug2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Swetug2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_CodeStock2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_CodeStock2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_MicrosoftTechDays, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_MicrosoftTechDays], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_CaribbeanDeveloeprsConference, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_MicrosoftTechDays], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DevoxxUK2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DevoxxUK2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_t3chfest2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_t3chfest2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_CircleCityCom2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_CircleCityCom2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_OrlandoCodeCamp2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_OrlandoCodeCamp2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_SouthFloridaCodeCamp2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_SouthFloridaCodeCamp2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_IndyCode2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_IndyCode2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_NDCPorto2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_NDCPorto2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_NDCOslo2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_NDCOslo2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_BostonCodeCamp2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_BostonCodeCamp2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_DotNetDeveloperConference2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_DotNetDeveloperConference2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_EuropeanCloudConference2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_EuropeanCloudConference2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_ThatConference2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_ThatConference2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_EuropeanSharePointOffice365AzureConference2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_EuropeanSharePointOffice365AzureConference2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_CincyDeliver2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_CincyDeliver2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_BeerCityCode2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_BeerCityCode2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_TechBash2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_TechBash2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_MusicCityTech2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_MusicCityTech2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+			submissions.Add(Shindig_Momentum2020, await _ShindigManager.SubmitPresentationToShindigAsync(_Shindigs[Shindig_Momentum2020], presentation, _SessionTypes[SessionType_Session60], accepted: false));
+
+			ShindigPresentation shindigPresentation;
+
+			shindigPresentation = await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_AtlantaCodeCamp2019], new DateTime(2019, 9, 14, 15, 45, 0));
+			await _PresentationManager.AddDownloadToShindigPresentation(shindigPresentation.PresentationId, shindigPresentation.ShindigId, shindigPresentation.OwnerEmailAddress, "Slides", new Uri("https://chadgreen.blob.core.windows.net/slides/The%20Hitchhicker%27s%20Guide%20to%20the%20Cosmos%20-%20Atlanta%20Code%20Camp.pdf"));
+
+			shindigPresentation = await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_DevSpace2019], new DateTime(2019, 10, 12, 13, 0, 0), "Ballroom 3");
+			await _PresentationManager.AddDownloadToShindigPresentation(shindigPresentation.PresentationId, shindigPresentation.ShindigId, shindigPresentation.OwnerEmailAddress, "Slides", new Uri("https://chadgreen.blob.core.windows.net/slides/The%20Hitchhicker%27s%20Guide%20to%20the%20Cosmos%20-%20DevSpace.pdf"));
+
+			shindigPresentation = await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_IgniteWashingtonDC2020], new DateTime(2020, 2, 7, 13, 45, 0), "Theater 1");
+			await _PresentationManager.AddDownloadToShindigPresentation(shindigPresentation.PresentationId, shindigPresentation.ShindigId, shindigPresentation.OwnerEmailAddress, "Slides", new Uri("https://chadgreen.blob.core.windows.net/slides/Graphing%20Your%20Way%20Through%20the%20Cosmos%20-%20Ignite%20Government.pptx"));
+
+			await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_IgniteChicago2020]);
+
+			await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_BostonCodeCamp2020], new DateTime(2020, 3, 21, 13, 45, 0), "Monroe");
+
+			await _ShindigManager.SubmissionAcceptedAsync(submissions[Shindig_EuropeanCloudConference2020]);
+
+			shindigPresentation = await _ShindigManager.PresentationScheuledAsync(_Shindigs[Shindig_TDevConf2020], presentation, _SessionTypes[SessionType_Session60], new DateTime(2020, 10, 3, 9, 00, 0), "Knoxville");
+			await _PresentationManager.AddDownloadToShindigPresentation(shindigPresentation.PresentationId, shindigPresentation.ShindigId, shindigPresentation.OwnerEmailAddress, "Slides", new Uri(@"https://chadgreen.blob.core.windows.net/slides/The%20Hitchhicker's%20Guide%20to%20the%20Cosmos%20-%20TDevConf.pdf"));
+
+			progressBar.Tick();
+
+		}
 
 		#endregion
 
