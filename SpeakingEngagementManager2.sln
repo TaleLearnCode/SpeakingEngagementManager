@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src2\Domain\Domai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "src2\Services\Services.csproj", "{6D643C18-5A8B-4918-BE74-835E5367CB44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeFeedMonitor", "src2\ChangeFeedMonitor\ChangeFeedMonitor\ChangeFeedMonitor.csproj", "{9AF9DE92-30C2-424A-B919-8247EFDEA048}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChangeFeedMonitor", "src2\ChangeFeedMonitor\ChangeFeedMonitor.csproj", "{8E6DF38A-C382-4828-8CEA-3D99A4A53D92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{6D643C18-5A8B-4918-BE74-835E5367CB44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D643C18-5A8B-4918-BE74-835E5367CB44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D643C18-5A8B-4918-BE74-835E5367CB44}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9AF9DE92-30C2-424A-B919-8247EFDEA048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AF9DE92-30C2-424A-B919-8247EFDEA048}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AF9DE92-30C2-424A-B919-8247EFDEA048}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AF9DE92-30C2-424A-B919-8247EFDEA048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E6DF38A-C382-4828-8CEA-3D99A4A53D92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E6DF38A-C382-4828-8CEA-3D99A4A53D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E6DF38A-C382-4828-8CEA-3D99A4A53D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E6DF38A-C382-4828-8CEA-3D99A4A53D92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,24 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
-    <AssemblyName>TaleLearnCode.SpeakingEngagementManager.Domain</AssemblyName>
-    <RootNamespace>TaleLearnCode.SpeakingEngagementManager.Domain</RootNamespace>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
+		<AssemblyName>TaleLearnCode.SpeakingEngagementManager.Domain</AssemblyName>
+		<RootNamespace>TaleLearnCode.SpeakingEngagementManager.Domain</RootNamespace>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="*.cs" />
-    <Compile Include="Exceptions/*.cs" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <Compile Include="netstandard20/*.cs" />
-    <PackageReference Include="System.Text.Json" Version="4.7.2" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
-    <Compile Include="net50/*.cs" />
-  </ItemGroup>
-
-
+	<ItemGroup>
+		<Compile Include="*.cs" />
+		<Compile Include="Exceptions/*.cs" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+		<Compile Include="netstandard20/*.cs" />
+		<PackageReference Include="System.Text.Json" Version="4.7.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+		<Compile Include="net50/*.cs" />
+	</ItemGroup>
 
 </Project>
